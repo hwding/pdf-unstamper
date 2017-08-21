@@ -37,4 +37,18 @@ Options:
   ➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k www.allitebooks.com
   ```
   
-## ScreenShots
+## Effect
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/before.png"></td>
+<td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/after.png"></td>
+</tr>
+</tbody>
+</table>
