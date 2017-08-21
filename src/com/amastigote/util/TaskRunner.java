@@ -1,3 +1,10 @@
+/*
+  AUTH | hwding
+  DATE | Aug 21 2017
+  DESC | text stamp remover for PDF files
+  MAIL | m@amastigote.com
+  GITH | github.com/hwding
+ */
 package com.amastigote.util;
 
 import com.amastigote.core.Processor;
