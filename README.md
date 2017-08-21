@@ -1,6 +1,8 @@
 # pdf-unstamper
 Text stamp remover for PDF files.
 
+Powered by [Apache PDFBox®](https://pdfbox.apache.org/)
+
 ## Run
 ```
 ➜ java -jar pdf-unstamper.jar [ARGUMENTS]...
