@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class TaskRunner {
-    public static String[] keywords;
+    private static String[] keywords;
 
     public static void init(String[] keywords) {
         TaskRunner.keywords = keywords;
