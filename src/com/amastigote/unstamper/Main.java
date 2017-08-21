@@ -5,11 +5,11 @@
   MAIL | m@amastigote.com
   GITH | github.com/hwding
  */
-package com.amastigote;
+package com.amastigote.unstamper;
 
-import com.amastigote.log.GeneralLogger;
-import com.amastigote.util.OptionManager;
-import com.amastigote.util.TaskRunner;
+import com.amastigote.unstamper.log.GeneralLogger;
+import com.amastigote.unstamper.util.OptionManager;
+import com.amastigote.unstamper.util.TaskRunner;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.ParseException;

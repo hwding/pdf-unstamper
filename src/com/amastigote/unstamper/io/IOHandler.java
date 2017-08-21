@@ -5,7 +5,7 @@
   MAIL | m@amastigote.com
   GITH | github.com/hwding
  */
-package com.amastigote.io;
+package com.amastigote.unstamper.io;
 
 import com.sun.istack.internal.NotNull;
 import org.apache.commons.io.FileUtils;

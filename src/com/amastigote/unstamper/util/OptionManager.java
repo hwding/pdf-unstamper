@@ -5,7 +5,7 @@
   MAIL | m@amastigote.com
   GITH | github.com/hwding
  */
-package com.amastigote.util;
+package com.amastigote.unstamper.util;
 
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;

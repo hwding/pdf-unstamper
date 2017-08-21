@@ -5,11 +5,11 @@
   MAIL | m@amastigote.com
   GITH | github.com/hwding
  */
-package com.amastigote.util;
+package com.amastigote.unstamper.util;
 
-import com.amastigote.core.Processor;
-import com.amastigote.io.IOHandler;
-import com.amastigote.log.GeneralLogger;
+import com.amastigote.unstamper.core.Processor;
+import com.amastigote.unstamper.io.IOHandler;
+import com.amastigote.unstamper.log.GeneralLogger;
 
 import java.io.File;
 import java.io.IOException;

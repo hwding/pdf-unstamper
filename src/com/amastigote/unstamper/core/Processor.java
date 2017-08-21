@@ -5,9 +5,9 @@
   MAIL | m@amastigote.com
   GITH | github.com/hwding
  */
-package com.amastigote.core;
+package com.amastigote.unstamper.core;
 
-import com.amastigote.log.GeneralLogger;
+import com.amastigote.unstamper.log.GeneralLogger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 
 import java.io.*;

@@ -5,7 +5,7 @@
   MAIL | m@amastigote.com
   GITH | github.com/hwding
  */
-package com.amastigote.log;
+package com.amastigote.unstamper.log;
 
 public class GeneralLogger {
     public static class Help {

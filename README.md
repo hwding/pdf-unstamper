@@ -53,3 +53,18 @@ Options:
   ➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k www.allitebooks.com
   ```
   
+## Structure
+```
+unstamper
+├── core
+│   └── Processor.java
+├── io
+│   └── IOHandler.java
+├── log
+│   └── GeneralLogger.java
+├── Main.java
+└── util
+    ├── OptionManager.java
+    └── TaskRunner.java
+
+```
