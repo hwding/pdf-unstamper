@@ -26,6 +26,7 @@ public class OptionManager {
         optionUCI.setArgs(1);
         optionUCO.setArgs(1);
         optionK.setRequired(true);
+        optionK.setArgs(Option.UNLIMITED_VALUES);
         options.addOption(optionLCI);
         options.addOption(optionLCO);
         options.addOption(optionUCI);
