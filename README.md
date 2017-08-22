@@ -34,25 +34,17 @@ Options:
 ```
 
 ## Example
-- For single file
-
-  ```
+  ```bash
+  # For single file processing
   ➜ java -jar pdf-unstamper.jar -i PythonRequestsEssentials.pdf -o PythonRequestsEssentials.unstamped.pdf -k www.allitebooks.com
-  ```
-  Or
-  ```
+  # Or
   ➜ java -jar pdf-unstamper.jar -i PythonRequestsEssentials.pdf -d -k www.allitebooks.com
-  ```
-- For massive files
-
-  ```
+  
+  # For massive files processing
   ➜ java -jar pdf-unstamper.jar -I pdfs/ -O unstampedPdfs/ -r -k www.allitebooks.com
-  ```
-  Or
-  ```
+  # Or
   ➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k www.allitebooks.com
   ```
-  
 ## Structure
 ```
 unstamper
