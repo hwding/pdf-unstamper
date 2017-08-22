@@ -16,6 +16,10 @@ Powered by [Apache PDFBox®](https://pdfbox.apache.org/).
 <td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/before.png"></td>
 <td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/after.png"></td>
 </tr>
+<tr>
+<td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/after-ituring.png"></td>
+<td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/before-ituring.png"></td>
+</tr>
 </tbody>
 </table>
 
