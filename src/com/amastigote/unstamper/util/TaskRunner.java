@@ -17,9 +17,11 @@ import java.util.Iterator;
 
 public class TaskRunner {
     private static String[] keywords;
+    private static boolean cutTail;
 
-    public static void init(String[] keywords) {
+    public static void init(String[] keywords, boolean cutTail) {
         TaskRunner.keywords = keywords;
+        TaskRunner.cutTail = cutTail;
     }
 
     public static void procSingleFile(String ifn, String ofn) {
@@ -38,7 +40,7 @@ public class TaskRunner {
     }
 
     private static void submitToProcessor(File file) {
-        Processor.process(file, keywords);
+        Processor.process(file, keywords, cutTail);
     }
 
     public static void procSingleFileDirectly(String ifn) {

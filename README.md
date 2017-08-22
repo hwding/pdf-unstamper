@@ -30,6 +30,7 @@ Usage:
 
 Options:
    -d,  --directly          directly modify the input file(s), which makes option o/O unnecessary
+   -t,  --cut-tail          remove the last element of each page, which makes option w optional
    -r,  --recursive         process files in the given dir recursively
 ```
 
@@ -44,6 +45,9 @@ Options:
   ➜ java -jar pdf-unstamper.jar -I pdfs/ -O unstampedPdfs/ -r -k www.allitebooks.com
   # Or
   ➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k www.allitebooks.com
+  
+  # For ituring.com.cn or other circumstances
+  ➜ java -jar pdf-unstamper.jar -i Ruby.pdf -d -t
   ```
 ## Structure
 ```

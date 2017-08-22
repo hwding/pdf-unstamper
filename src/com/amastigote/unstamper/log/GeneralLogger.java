@@ -16,6 +16,7 @@ public class GeneralLogger {
                         "\n   [OPTION] -I [INPUT DIR] -k [KEYWORDS] (-O [OUTPUT DIR])\n" +
                         "\nOptions:" +
                         "\n   -d,  --directly          directly modify the input file(s), which makes option o/O unnecessary" +
+                        "\n   -t,  --cut-tail          remove the last element of each page, which makes option w optional"+
                         "\n   -r,  --recursive         process files in the given dir recursively\n";
 
         public static void print() {

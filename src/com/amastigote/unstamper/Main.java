@@ -25,11 +25,13 @@ public class Main {
             GeneralLogger.Help.print();
             System.exit(0);
         }
-        if (!commandLine.hasOption('k')) {
+        if (!commandLine.hasOption('k') && !commandLine.hasOption('t')) {
             GeneralLogger.Help.print();
             System.exit(0);
         } else {
-            TaskRunner.init(commandLine.getOptionValues('k'));
+            TaskRunner.init(
+                    commandLine.getOptionValues('k'),
+                    commandLine.hasOption('t'));
 
             if (commandLine.hasOption('i') && (commandLine.hasOption('o') || commandLine.hasOption('d'))) {
                 if (commandLine.hasOption('d'))
