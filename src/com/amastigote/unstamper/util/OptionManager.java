@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Aug 21 2017
+  DATE | Aug 22 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
