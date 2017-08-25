@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Aug 22 2017
+  DATE | Aug 25 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -8,14 +8,25 @@
 package com.amastigote.unstamper.core;
 
 import com.amastigote.unstamper.log.GeneralLogger;
+import com.amastigote.unstamper.util.TextStampUtil;
+import org.apache.pdfbox.cos.COSName;
+import org.apache.pdfbox.cos.COSString;
+import org.apache.pdfbox.pdfparser.PDFStreamParser;
+import org.apache.pdfbox.pdfwriter.ContentStreamWriter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.common.PDStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
 
-import java.io.*;
-import java.util.Arrays;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Processor {
-    public static void process(File file, String[] strings, boolean cutTail) {
+    public static void process(File file, String[] strings) {
         try {
             if (!file.canWrite()) {
                 GeneralLogger.File.notWritable(file.getName());
@@ -23,47 +34,44 @@ public class Processor {
             }
             PDDocument pdDocument = PDDocument.load(file);
             pdDocument.getPages().forEach(pdPage -> {
-                PDStream[] pdStreams = {null};
-                pdPage.getContentStreams().forEachRemaining(pdStream -> {
-                    try {
-                        pdStreams[0] = pdStream;
-                        InputStreamReader inputStreamReader = new InputStreamReader(pdStream.createInputStream());
-                        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                        String[] curLine = {""};
-                        if (strings != null)
-                            while ((curLine[0] = bufferedReader.readLine()) != null) {
-                                Arrays.asList(strings).forEach(s -> {
-                                    if (curLine[0].contains(s)) {
-                                        emptyContent(pdStream, file);
-                                    }
-                                });
-                            }
-                    } catch (IOException e) {
-                        GeneralLogger.Processor.errorProcess(file.getName());
+                try {
+                    /* START: loading font resources for further parsing */
+                    PDFStreamParser pdfStreamParser = new PDFStreamParser(pdPage);
+                    pdfStreamParser.parse();
+                    List<Object> objects = pdfStreamParser.getTokens();
+                    List<Object> cosNames = objects.parallelStream()
+                            .filter(e -> e instanceof COSName)
+                            .collect(Collectors.toList());
+                    Set<PDFont> pdFonts = new HashSet<>();
+                    cosNames.forEach(e -> {
+                        try {
+                            PDFont pdFont = pdPage.getResources().getFont(((COSName) e));
+                            if (pdFont != null)
+                                pdFonts.add(pdFont);
+                        } catch (IOException ignored) {
+                        }
+                    });
+                    /* END */
+                    for (Object o : objects) {
+                        if (o instanceof COSString) {
+                            if (TextStampUtil.recognize(strings, ((COSString) o).getBytes(), pdFonts))
+                                ((COSString) o).setValue(new byte[0]);
+                        }
                     }
-                });
-                if (cutTail && pdStreams[0] != null) {
-                    emptyContent(pdStreams[0], file);
+                    PDStream newContents = new PDStream(pdDocument);
+                    OutputStream out = newContents.createOutputStream();
+                    ContentStreamWriter writer = new ContentStreamWriter(out);
+                    writer.writeTokens(objects);
+                    out.close();
+                    pdPage.setContents(newContents);
+                } catch (IOException e) {
+                    GeneralLogger.Processor.errorProcess(file.getName());
                 }
             });
             pdDocument.save(file);
             pdDocument.close();
         } catch (IOException e) {
             GeneralLogger.Processor.errorLoadPdf(file.getName());
-        }
-    }
-
-    private static void emptyContent(PDStream pdStream, File file) {
-        BufferedWriter bufferedWriter;
-        try {
-            bufferedWriter = new BufferedWriter(
-                    new OutputStreamWriter(pdStream.createOutputStream())
-            );
-            bufferedWriter.write("");
-            bufferedWriter.flush();
-            bufferedWriter.close();
-        } catch (IOException e) {
-            GeneralLogger.Processor.errorProcess(file.getName());
         }
     }
 }

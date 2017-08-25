@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Aug 22 2017
+  DATE | Aug 25 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -17,11 +17,9 @@ import java.util.Iterator;
 
 public class TaskRunner {
     private static String[] keywords;
-    private static boolean cutTail;
 
-    public static void init(String[] keywords, boolean cutTail) {
+    public static void init(String[] keywords) {
         TaskRunner.keywords = keywords;
-        TaskRunner.cutTail = cutTail;
     }
 
     public static void procSingleFile(String ifn, String ofn) {
@@ -40,7 +38,7 @@ public class TaskRunner {
     }
 
     private static void submitToProcessor(File file) {
-        Processor.process(file, keywords, cutTail);
+        Processor.process(file, keywords);
     }
 
     public static void procSingleFileDirectly(String ifn) {

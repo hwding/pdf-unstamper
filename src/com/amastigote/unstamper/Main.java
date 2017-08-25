@@ -30,8 +30,7 @@ public class Main {
             System.exit(0);
         } else {
             TaskRunner.init(
-                    commandLine.getOptionValues('k'),
-                    commandLine.hasOption('t'));
+                    commandLine.getOptionValues('k'));
 
             if (commandLine.hasOption('i') && (commandLine.hasOption('o') || commandLine.hasOption('d'))) {
                 if (commandLine.hasOption('d'))

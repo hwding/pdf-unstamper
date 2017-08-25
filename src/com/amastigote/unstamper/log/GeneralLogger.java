@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Aug 22 2017
+  DATE | Aug 25 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -10,13 +10,12 @@ package com.amastigote.unstamper.log;
 public class GeneralLogger {
     public static class Help {
         private static final String usage =
-                "\nPDF-UnStamper ver. 0.0.2 by hwding@GitHub\n" +
+                "\nPDF-UnStamper ver. 0.1.0 by hwding@GitHub\n" +
                         "\nUsage: " +
-                        "\n   [OPTION] -i [INPUT PDF] -k [KEYWORDS] (-o [OUTPUT PDF])" +
-                        "\n   [OPTION] -I [INPUT DIR] -k [KEYWORDS] (-O [OUTPUT DIR])\n" +
+                        "\n   [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])" +
+                        "\n   [OPTION] -I [INPUT DIR] -k [KEYWORDS...] (-O [OUTPUT DIR])\n" +
                         "\nOptions:" +
                         "\n   -d,  --directly          directly modify the input file(s), which makes option o/O unnecessary" +
-                        "\n   -t,  --cut-tail          remove the last element of each page, which makes option w optional"+
                         "\n   -r,  --recursive         process files in the given dir recursively\n";
 
         public static void print() {
@@ -26,15 +25,15 @@ public class GeneralLogger {
 
     public static class File {
         public static void nameDuplicate(String fn) {
-            System.err.println("input file/dir " + fn + " has the same name as output file/dir, skipping");
+            System.err.println("input file/dir " + fn + " has the same name as output file/dir, skipping file/dir");
         }
 
         public static void notExist(String fn) {
-            System.err.println(fn + " not exist or is not a file/dir, skipping");
+            System.err.println(fn + " not exist or is not a file/dir, skipping file/dir");
         }
 
         public static void error(String fn) {
-            System.err.println("error when generating stub file/dir for " + fn + ", skipping");
+            System.err.println("error when generating stub file/dir for " + fn + ", skipping file");
         }
 
         public static void notWritable(String fn) {
@@ -44,11 +43,11 @@ public class GeneralLogger {
 
     public static class Processor {
         public static void errorLoadPdf(String fn) {
-            System.err.println("error loading " + fn + " as a PDF file, skipping");
+            System.err.println("error loading " + fn + " as a PDF file, skipping file");
         }
 
         public static void errorProcess(String fn) {
-            System.err.println("error processing " + fn + ", skipping");
+            System.err.println("error processing " + fn + ", skipping minimum unit");
         }
     }
 }

@@ -1,6 +1,8 @@
 # pdf-unstamper
 Text stamp remover for PDF files.
 
+Remove text stamps of **any font**, **any encoding** and **any language** with pdf-unstamper now!
+
 Powered by [Apache PDFBox®](https://pdfbox.apache.org/).
 
 ## Effect
@@ -19,35 +21,33 @@ Powered by [Apache PDFBox®](https://pdfbox.apache.org/).
 </tbody>
 </table>
 
-## Download
-Download [JAR](https://github.com/hwding/pdf-unstamper/releases).
+## Download && Release-Notes
+[Releases](https://github.com/hwding/pdf-unstamper/releases).
 
 ## Help
 ```
 Usage: 
-   [OPTION] -i [INPUT PDF] -k [KEYWORDS] (-o [OUTPUT PDF])
-   [OPTION] -I [INPUT DIR] -k [KEYWORDS] (-O [OUTPUT DIR])
+   [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])
+   [OPTION] -I [INPUT DIR] -k [KEYWORDS...] (-O [OUTPUT DIR])
 
 Options:
    -d,  --directly          directly modify the input file(s), which makes option o/O unnecessary
-   -t,  --cut-tail          remove the last element of each page, which makes option w optional
    -r,  --recursive         process files in the given dir recursively
 ```
 
 ## Example
   ```bash
   # For single file processing
-  ➜ java -jar pdf-unstamper.jar -i PythonRequestsEssentials.pdf -o PythonRequestsEssentials.unstamped.pdf -k www.allitebooks.com
+  ➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
+  ➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -o "RoR.unstamped.pdf" -k 图灵社区会员
   # Or
-  ➜ java -jar pdf-unstamper.jar -i PythonRequestsEssentials.pdf -d -k www.allitebooks.com
+  ➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -d -k www.allitebooks.com
+  ➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -d 图灵社区会员
   
   # For massive files processing
   ➜ java -jar pdf-unstamper.jar -I pdfs/ -O unstampedPdfs/ -r -k www.allitebooks.com
   # Or
   ➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k www.allitebooks.com
-  
-  # For ituring.com.cn or other circumstances
-  ➜ java -jar pdf-unstamper.jar -i Ruby.pdf -d -t
   ```
 ## Structure
 ```
@@ -61,5 +61,6 @@ unstamper
 ├── Main.java
 └── util
     ├── OptionManager.java
-    └── TaskRunner.java
+    ├── TaskRunner.java
+    └── TextStampUtil.java
 ```

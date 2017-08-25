@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Aug 22 2017
+  DATE | Aug 25 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -18,7 +18,6 @@ public class OptionManager {
     private final static Option optionK = new Option("k", true, null);
     private final static Option optionD = new Option("d", "directly", false, null);
     private final static Option optionR = new Option("r", "recursive", false, null);
-    private final static Option optionT = new Option("t", "cut-tail", false, null);
 
     public static Options buildOptions() {
         Options options = new Options();
@@ -27,6 +26,7 @@ public class OptionManager {
         optionUCI.setArgs(1);
         optionUCO.setArgs(1);
         optionK.setArgs(Option.UNLIMITED_VALUES);
+        optionK.setRequired(true);
         options.addOption(optionLCI);
         options.addOption(optionLCO);
         options.addOption(optionUCI);
@@ -34,7 +34,6 @@ public class OptionManager {
         options.addOption(optionD);
         options.addOption(optionR);
         options.addOption(optionK);
-        options.addOption(optionT);
         return options;
     }
 }
