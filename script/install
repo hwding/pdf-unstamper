@@ -1,0 +1,89 @@
+#!/bin/bash
+
+#AUTH hwding
+#DATE AUG/25/2017
+#DESC install unstamper as a command
+
+user_bin=`echo ~`"/bin/"
+jar_name="pdf-unstamper.jar"
+exe_name="unstamp"
+_version="0.1.0"
+jar_durl="https://github.com/hwding/pdf-unstamper/releases/download/$_version/$jar_name"
+
+function download() {
+    echo -n "> missing $jar_name, downloading version $_version from GitHub..."
+    `wget $jar_durl > /dev/null 2>&1`
+    echo "OK"
+}
+
+function chk_f() {
+    if [ ! -f "$1" ]; then
+        return 0;
+    else
+        return 1;
+    fi
+}
+
+function chk_d() {
+    if [ ! -d $1 ]; then
+        return 0;
+    else
+        return 1;
+    fi
+}
+
+# check JRE installation
+if type -p java > /dev/null 2>&1; then
+    _java=1
+    echo "> JRE detected in PATH"
+elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]; then
+    _java=1
+    echo "> JRE detected in JAVA_HOME"
+else
+    _java=0
+    read -p "You do not have JRE installed, continue? [ENTER]"
+fi
+
+# check JRE version
+if [ $_java -gt 0 ]; then
+    version=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
+    if [[ "$version" > "1.8" ]]; then
+        echo "> JRE version is at least 1.8"
+    else         
+        read -p "> JRE version less than 1.8, continue? [ENTER]"
+    fi
+fi
+
+# check ~/bin/
+chk_d $user_bin
+if [ $? -eq 0 ]; then
+    echo "> $user_bin not detected, creating..."
+    `mkdir $user_bin`
+else
+    echo "> $user_bin detected"
+fi
+
+# install
+chk_f "$jar_name"
+
+if [ $? -eq 0 ]; then
+    download
+fi
+chk_f "${user_bin}${jar_name}"
+if [ $? -eq 1 ]; then
+    echo "> removing old version of $jar_name"
+    echo -n "> "
+    `rm -i ${user_bin}${jar_name}`
+fi
+chk_f "${user_bin}${exe_name}"
+if [ $? -eq 1 ]; then
+    echo "> removing old version of $exe_name"
+    echo -n "> "
+    `rm -i ${user_bin}${exe_name}`
+fi
+echo "> installing unstamper..."
+`cp $jar_name $user_bin`
+`cp $exe_name $user_bin`
+
+echo "> unstamper installed as ${user_bin}unstamper"
+echo "> hava a nice day"
