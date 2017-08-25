@@ -1,6 +1,4 @@
 # pdf-unstamper
-Text stamp remover for PDF files.
-
 Remove text stamps of **any font**, **any encoding** and **any language** with pdf-unstamper now!
 
 Powered by [Apache PDFBox®](https://pdfbox.apache.org/).
