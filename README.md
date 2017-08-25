@@ -23,7 +23,7 @@ Powered by [Apache PDFBox®](https://pdfbox.apache.org/).
 </tbody>
 </table>
 
-## Download && Release-Notes
+## Download & Release-Notes
 [Releases](https://github.com/hwding/pdf-unstamper/releases).
 
 ## Help
