@@ -8,7 +8,6 @@
 package com.amastigote.unstamper.core;
 
 import com.amastigote.unstamper.log.GeneralLogger;
-import com.amastigote.unstamper.util.TextStampUtil;
 import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.cos.COSString;
 import org.apache.pdfbox.pdfparser.PDFStreamParser;
@@ -54,7 +53,7 @@ public class Processor {
                     /* END */
                     for (Object o : objects) {
                         if (o instanceof COSString) {
-                            if (TextStampUtil.recognize(strings, ((COSString) o).getBytes(), pdFonts))
+                            if (TextStampRecognizer.recognize(strings, ((COSString) o).getBytes(), pdFonts))
                                 ((COSString) o).setValue(new byte[0]);
                         }
                     }

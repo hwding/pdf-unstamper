@@ -5,14 +5,14 @@
   MAIL | m@amastigote.com
   GITH | github.com/hwding
  */
-package com.amastigote.unstamper.util;
+package com.amastigote.unstamper.core;
 
 import org.apache.pdfbox.pdmodel.font.PDFont;
 
 import java.io.IOException;
 import java.util.Set;
 
-public class TextStampUtil {
+class TextStampRecognizer {
 
     private static boolean recognizeWithFont(
             String[] keywords,
@@ -43,9 +43,9 @@ public class TextStampUtil {
         return false;
     }
 
-    public static boolean recognize(String[] keywords,
-                                    byte[] inputText,
-                                    Set<PDFont> pdFonts) {
+    static boolean recognize(String[] keywords,
+                             byte[] inputText,
+                             Set<PDFont> pdFonts) {
         return recognizePlain(keywords, inputText) ||
                 recognizeWithFont(keywords, inputText, pdFonts);
     }

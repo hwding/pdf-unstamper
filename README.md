@@ -47,15 +47,15 @@ We strongly recommend this for your convenience.
 ```
 # For single file processing
 ➜ unstamp -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
-➜ unstamp -i "RoR.pdf" -o "RoR.unstamped.pdf" -k 图灵社区会员
+➜ unstamp -i RoR.pdf -o RoR.unstamped.pdf -k 图灵社区会员
 # Or
 ➜ unstamp -i "C Recipes.pdf" -d -k www.allitebooks.com
-➜ unstamp -i "RoR.pdf" -d -k 图灵社区会员
+➜ unstamp -i RoR.pdf -d -k 图灵社区会员
  
 # For massive files processing
-➜ unstamp -I pdfs/ -O unstampedPdfs/ -r -k www.allitebooks.com
+➜ unstamp -I pdfs/ -O unstampedPdfs/ -r -k 图灵社区会员 www.allitebooks.com
 # Or
-➜ unstamp -I pdfs/ -d -r -k www.allitebooks.com
+➜ unstamp -I pdfs/ -d -r -k 图灵社区会员 www.allitebooks.com
 ```
 
 ### As a JAR
@@ -65,21 +65,22 @@ Get the JAR in [releases](https://github.com/hwding/pdf-unstamper/releases).
 ```
 # For single file processing
 ➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
-➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -o "RoR.unstamped.pdf" -k 图灵社区会员
+➜ java -jar pdf-unstamper.jar -i RoR.pdf -o RoR.unstamped.pdf -k 图灵社区会员
 # Or
 ➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -d -k www.allitebooks.com
-➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -d -k 图灵社区会员
+➜ java -jar pdf-unstamper.jar -i RoR.pdf -d -k 图灵社区会员
  
 # For massive files processing
-➜ java -jar pdf-unstamper.jar -I pdfs/ -O unstampedPdfs/ -r -k www.allitebooks.com
+➜ java -jar pdf-unstamper.jar -I pdfs/ -O unstampedPdfs/ -r -k 图灵社区会员 www.allitebooks.com
 # Or
-➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k www.allitebooks.com
+➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k 图灵社区会员 www.allitebooks.com
 ```
 ## Structure
 ```
-unstamper
+src/com/amastigote/unstamper
 ├── core
-│   └── Processor.java
+│   ├── Processor.java
+│   └── TextStampRecognizer.java
 ├── io
 │   └── IOHandler.java
 ├── log
@@ -87,6 +88,5 @@ unstamper
 ├── Main.java
 └── util
     ├── OptionManager.java
-    ├── TaskRunner.java
-    └── TextStampUtil.java
+    └── TaskRunner.java
 ```
