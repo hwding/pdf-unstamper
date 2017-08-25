@@ -23,10 +23,7 @@ Powered by [Apache PDFBox®](https://pdfbox.apache.org/).
 </tbody>
 </table>
 
-## Download & Release-Notes
-[Releases](https://github.com/hwding/pdf-unstamper/releases).
-
-## How to use
+## Usage
 ```
 Usage: 
    [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])
@@ -37,7 +34,7 @@ Options:
    -r,  --recursive         process files in the given dir recursively
 ```
 
-## How to run
+## Get it now
 ### As a command
 #### Install
 We strongly recommend this for your convenience.
