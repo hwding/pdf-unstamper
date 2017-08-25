@@ -36,19 +36,18 @@ Options:
 
 ## Get it now
 ### As a command
-#### Install
 We strongly recommend this for your convenience.
+#### Install
 ```
 ➜ git clone https://github.com/hwding/pdf-unstamper.git
 ➜ cd pdf-unstamper/script/
 ➜ ./install
 ```
 The installation tool will:
-- check Java environment
-- download JAR of the same version as you just cloned
-- create the necessary directory (if not present)
-- install the wrapper and the JAR in ~/bin/
-- replace the old version
+- Check Java environment
+- Download JAR of the same version as you just cloned
+- Install `unstamp`
+- Replace old version
 #### Run
 ```
 # For single file processing
