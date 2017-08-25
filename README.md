@@ -43,11 +43,6 @@ We strongly recommend this for your convenience.
 ➜ cd pdf-unstamper/script/
 ➜ ./install
 ```
-The installation tool will:
-- Check Java environment
-- Download JAR of the same version as you just cloned
-- Install `unstamp`
-- Replace old version
 #### Run
 ```
 # For single file processing
