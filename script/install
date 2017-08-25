@@ -2,19 +2,13 @@
 
 #AUTH hwding
 #DATE AUG/25/2017
-#DESC install unstamper as a command
+#DESC install unstamp as a command
 
 user_bin=`echo ~`"/bin/"
 jar_name="pdf-unstamper.jar"
 exe_name="unstamp"
 _version="0.1.0"
 jar_durl="https://github.com/hwding/pdf-unstamper/releases/download/$_version/$jar_name"
-
-function download() {
-    echo -n "> missing $jar_name, downloading version $_version from GitHub..."
-    `wget $jar_durl > /dev/null 2>&1`
-    echo "OK"
-}
 
 function chk_f() {
     if [ ! -f "$1" ]; then
@@ -57,18 +51,21 @@ fi
 # check ~/bin/
 chk_d $user_bin
 if [ $? -eq 0 ]; then
-    echo "> $user_bin not detected, creating..."
+    echo "> target dir $user_bin not detected, creating..."
     `mkdir $user_bin`
 else
-    echo "> $user_bin detected"
+    echo "> target dir $user_bin detected"
 fi
 
-# install
+# fetch JAR
 chk_f "$jar_name"
-
 if [ $? -eq 0 ]; then
-    download
+    echo -n "> missing $jar_name, downloading version $_version from GitHub..."
+    `wget $jar_durl > /dev/null 2>&1`
+    echo "OK"
 fi
+
+# uninstall old version
 chk_f "${user_bin}${jar_name}"
 if [ $? -eq 1 ]; then
     echo "> removing old version of $jar_name"
@@ -81,9 +78,11 @@ if [ $? -eq 1 ]; then
     echo -n "> "
     `rm -i ${user_bin}${exe_name}`
 fi
-echo "> installing unstamper..."
+
+# install
+echo "> installing ${exe_name}..."
 `cp $jar_name $user_bin`
 `cp $exe_name $user_bin`
 
-echo "> unstamper installed as ${user_bin}unstamper"
+echo "> ${exe_name} installed as ${user_bin}${exe_name}"
 echo "> hava a nice day"
