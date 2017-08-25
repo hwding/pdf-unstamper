@@ -44,7 +44,7 @@ Options:
   ➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -o "RoR.unstamped.pdf" -k 图灵社区会员
   # Or
   ➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -d -k www.allitebooks.com
-  ➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -d 图灵社区会员
+  ➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -d -k 图灵社区会员
   
   # For massive files processing
   ➜ java -jar pdf-unstamper.jar -I pdfs/ -O unstampedPdfs/ -r -k www.allitebooks.com
