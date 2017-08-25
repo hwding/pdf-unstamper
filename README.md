@@ -26,7 +26,7 @@ Powered by [Apache PDFBox®](https://pdfbox.apache.org/).
 ## Download & Release-Notes
 [Releases](https://github.com/hwding/pdf-unstamper/releases).
 
-## Help
+## How to use
 ```
 Usage: 
    [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])
@@ -37,20 +37,53 @@ Options:
    -r,  --recursive         process files in the given dir recursively
 ```
 
-## Example
-  ```bash
-  # For single file processing
-  ➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
-  ➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -o "RoR.unstamped.pdf" -k 图灵社区会员
-  # Or
-  ➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -d -k www.allitebooks.com
-  ➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -d -k 图灵社区会员
-  
-  # For massive files processing
-  ➜ java -jar pdf-unstamper.jar -I pdfs/ -O unstampedPdfs/ -r -k www.allitebooks.com
-  # Or
-  ➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k www.allitebooks.com
-  ```
+## How to run
+### As a command
+#### Install
+We strongly recommend this for your convenience.
+```
+➜ git clone https://github.com/hwding/pdf-unstamper.git
+➜ cd pdf-unstamper/script/
+➜ ./install
+```
+The installation tool will:
+- check Java environment
+- download JAR of the same version as you just cloned
+- create the necessary directory (if not present)
+- install the wrapper and the JAR in ~/bin/
+- replace the old version
+#### Run
+```
+# For single file processing
+➜ unstamp -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
+➜ unstamp -i "RoR.pdf" -o "RoR.unstamped.pdf" -k 图灵社区会员
+# Or
+➜ unstamp -i "C Recipes.pdf" -d -k www.allitebooks.com
+➜ unstamp -i "RoR.pdf" -d -k 图灵社区会员
+ 
+# For massive files processing
+➜ unstamp -I pdfs/ -O unstampedPdfs/ -r -k www.allitebooks.com
+# Or
+➜ unstamp -I pdfs/ -d -r -k www.allitebooks.com
+```
+
+### As a JAR
+#### Download
+Get the JAR in [releases](https://github.com/hwding/pdf-unstamper/releases).
+#### Run
+```
+# For single file processing
+➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
+➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -o "RoR.unstamped.pdf" -k 图灵社区会员
+# Or
+➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -d -k www.allitebooks.com
+➜ java -jar pdf-unstamper.jar -i "RoR.pdf" -d -k 图灵社区会员
+ 
+# For massive files processing
+➜ java -jar pdf-unstamper.jar -I pdfs/ -O unstampedPdfs/ -r -k www.allitebooks.com
+# Or
+➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k www.allitebooks.com
+```
 ## Structure
 ```
 unstamper
