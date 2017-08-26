@@ -38,7 +38,7 @@ Options:
 ### As a command
 We strongly recommend this for your convenience.
 #### Install
-Before running the *install* script, make sure you have `wget` installed, otherwise you need to download the [*pdf-unstamper.jar*](https://github.com/hwding/pdf-unstamper/releases) and place it alongside the script.
+Before running the *install* script, **make sure you have `wget` installed**, otherwise you need to manually download [*pdf-unstamper.jar*](https://github.com/hwding/pdf-unstamper/releases) and **place it alongside the script**.
 ```
 ➜ git clone https://github.com/hwding/pdf-unstamper.git
 ➜ cd pdf-unstamper/script/
