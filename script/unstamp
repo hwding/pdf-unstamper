@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #AUTH hwding
-#DATE AUG/25/2017
+#DATE AUG/27/2017
 #DESC a wrapper to run pdf-unstamper
 
-java -jar pdf-unstamper.jar $@
+java -jar pdf-unstamper.jar "$@"
