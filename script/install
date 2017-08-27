@@ -7,7 +7,7 @@
 user_bin=`echo ~`"/bin/"
 jar_name="pdf-unstamper.jar"
 exe_name="unstamp"
-_version="0.1.0"
+_version="0.1.1"
 jar_durl="https://github.com/hwding/pdf-unstamper/releases/download/$_version/$jar_name"
 
 function chk_f() {

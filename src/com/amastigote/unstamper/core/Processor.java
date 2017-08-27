@@ -19,6 +19,7 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,33 +38,51 @@ public class Processor {
                     /* START: loading font resources for further parsing */
                     PDFStreamParser pdfStreamParser = new PDFStreamParser(pdPage);
                     pdfStreamParser.parse();
-                    List<Object> objects = pdfStreamParser.getTokens();
-                    List<Object> cosNames = objects.parallelStream()
-                            .filter(e -> e instanceof COSName)
-                            .collect(Collectors.toList());
-                    Set<PDFont> pdFonts = new HashSet<>();
-                    cosNames.forEach(e -> {
-                        try {
-                            PDFont pdFont = pdPage.getResources().getFont(((COSName) e));
-                            if (pdFont != null)
-                                pdFonts.add(pdFont);
-                        } catch (IOException ignored) {
-                        }
-                    });
+
+                    List<Object> objects =
+                            Collections.synchronizedList(pdfStreamParser.getTokens());
+
+                    List<Object> cosNames =
+                            objects.parallelStream()
+                                    .filter(e -> e instanceof COSName)
+                                    .collect(Collectors.toList());
+
+                    Set<PDFont> pdFonts =
+                            Collections.synchronizedSet(new HashSet<>());
+
+                    cosNames.parallelStream()
+                            .forEach(e -> {
+                                /* Ignore Any Exception During Parallel Processing */
+                                try {
+                                    PDFont pdFont = pdPage.getResources().getFont(((COSName) e));
+                                    if (pdFont != null)
+                                        pdFonts.add(pdFont);
+                                } catch (Exception ignored) {
+                                }
+                            });
                     /* END */
-                    for (Object o : objects) {
-                        if (o instanceof COSString) {
-                            if (TextStampRecognizer.recognize(strings, ((COSString) o).getBytes(), pdFonts))
-                                ((COSString) o).setValue(new byte[0]);
-                        }
-                    }
+                    objects
+                            .parallelStream()
+                            .forEach(e -> {
+                                        if (e instanceof COSString) {
+                                    /* Ignore Any Exception During Parallel Processing */
+                                            try {
+                                                if (TextStampRecognizer.recognize(strings, ((COSString) e).getBytes(), pdFonts))
+                                                    ((COSString) e).setValue(new byte[0]);
+                                            } catch (Exception ignored) {
+                                            }
+                                        }
+                                    }
+                            );
+
                     PDStream newContents = new PDStream(pdDocument);
                     OutputStream out = newContents.createOutputStream();
                     ContentStreamWriter writer = new ContentStreamWriter(out);
                     writer.writeTokens(objects);
                     out.close();
+
                     pdPage.setContents(newContents);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     GeneralLogger.Processor.errorProcess(file.getName());
                 }
             });

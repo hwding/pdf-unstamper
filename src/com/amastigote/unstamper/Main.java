@@ -16,6 +16,12 @@ import org.apache.commons.cli.ParseException;
 
 public class Main {
 
+    static {
+        /* Disable Logging in Apache PDFBox */
+        System.setProperty("org.apache.commons.logging.Log",
+                "org.apache.commons.logging.impl.NoOpLog");
+    }
+
     public static void main(String[] args) {
         CommandLine commandLine = null;
         try {

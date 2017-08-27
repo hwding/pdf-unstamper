@@ -10,7 +10,7 @@ package com.amastigote.unstamper.log;
 public class GeneralLogger {
     public static class Help {
         private static final String usage =
-                "\nPDF-UnStamper ver. 0.1.0 by hwding@GitHub\n" +
+                "\nPDF-UnStamper ver. 0.1.1 by hwding@GitHub\n" +
                         "\nUsage: " +
                         "\n   [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])" +
                         "\n   [OPTION] -I [INPUT DIR] -k [KEYWORDS...] (-O [OUTPUT DIR])\n" +
