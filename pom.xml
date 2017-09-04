@@ -6,8 +6,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.amastigote</groupId>
     <artifactId>unstamper</artifactId>
-    <version>0.1.1</version>
-    <description>text stamp remover for PDF files</description>
+    <version>0.1.2</version>
+    <description>Text stamp remover for PDF files.</description>
     <name>pdf-unstamper</name>
     <url>https://github.com/hwding/pdf-unstamper</url>
     <build>
