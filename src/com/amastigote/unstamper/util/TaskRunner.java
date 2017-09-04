@@ -51,30 +51,27 @@ public class TaskRunner {
     }
 
     public static void procMassFiles(String idn, String odn, boolean recursively) {
+        Iterator<File> fileIterator = null;
         try {
-            Iterator<File> fileIterator = IOHandler.getCopiedFiles(idn, odn, recursively);
-            if (fileIterator == null) {
-                GeneralLogger.File.notExist(odn);
-                return;
-            }
-            while (fileIterator.hasNext()) {
-                submitToProcessor(fileIterator.next());
-            }
+            fileIterator = IOHandler.getCopiedFiles(idn, odn, recursively);
         } catch (IOException e) {
             GeneralLogger.File.error(idn);
         } catch (IOHandler.FileNameDuplicateException e) {
             GeneralLogger.File.nameDuplicate(idn);
         }
+        procIterator(fileIterator, idn);
     }
 
     public static void procMassFilesDirectly(String idn, boolean recursively) {
         Iterator<File> fileIterator = IOHandler.getFiles(idn, recursively);
+        procIterator(fileIterator, idn);
+    }
+
+    private static void procIterator(Iterator<File> fileIterator, String idn) {
         if (fileIterator == null) {
             GeneralLogger.File.notExist(idn);
             return;
         }
-        while (fileIterator.hasNext()) {
-            submitToProcessor(fileIterator.next());
-        }
+        fileIterator.forEachRemaining(TaskRunner::submitToProcessor);
     }
 }

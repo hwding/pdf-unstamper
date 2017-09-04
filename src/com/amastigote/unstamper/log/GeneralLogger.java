@@ -24,30 +24,42 @@ public class GeneralLogger {
     }
 
     public static class File {
+        private static final String suffix = "[File] ";
+
         public static void nameDuplicate(String fn) {
-            System.err.println("input file/dir " + fn + " has the same name as output file/dir, skipping file/dir");
+            System.err.println(suffix + "Input file/dir \'" + fn + "\' has the same name as output file/dir, skipping");
         }
 
         public static void notExist(String fn) {
-            System.err.println(fn + " not exist or is not a file/dir, skipping file/dir");
+            System.err.println(suffix + "File/dir \'" + fn + "\' not exist or is not a file/dir, skipping");
         }
 
         public static void error(String fn) {
-            System.err.println("error when generating stub file/dir for " + fn + ", skipping file");
+            System.err.println(suffix + "Error when generating stub file/dir for \'" + fn + "\', skipping");
         }
 
         public static void notWritable(String fn) {
-            System.err.println(fn + " not writable, skipping");
+            System.err.println(suffix + "File \'" + fn + "\' not writable, skipping");
         }
     }
 
     public static class Processor {
+        private static final String suffix = "[Processor] ";
+
         public static void errorLoadPdf(String fn) {
-            System.err.println("error loading " + fn + " as a PDF file, skipping file");
+            System.err.println(suffix + "Error loading file \'" + fn + "\' as PDF, skipping");
         }
 
         public static void errorProcess(String fn) {
-            System.err.println("error processing " + fn + ", skipping minimum unit");
+            System.err.println(suffix + "Error processing \'" + fn + "\', skipping");
+        }
+
+        public static void procInProgress(String fn) {
+            System.out.print(suffix + "Processing PDF file \'" + fn + "\' ...");
+        }
+
+        public static void procFinished() {
+            System.out.println(" OK");
         }
     }
 }

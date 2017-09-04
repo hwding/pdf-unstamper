@@ -24,6 +24,7 @@ import java.util.Set;
 
 public class Processor {
     public static void process(File file, String[] strings) {
+        GeneralLogger.Processor.procInProgress(file.getName());
         try {
             if (!file.canWrite()) {
                 GeneralLogger.File.notWritable(file.getName());
@@ -36,7 +37,6 @@ public class Processor {
                     PDFStreamParser pdfStreamParser = new PDFStreamParser(pdPage);
                     pdfStreamParser.parse();
 
-                    List<Object> objects = pdfStreamParser.getTokens();
                     Set<PDFont> pdFonts = new HashSet<>();
 
                     pdPage.getResources().getFontNames().forEach(e -> {
@@ -50,6 +50,7 @@ public class Processor {
                     });
                     /* END */
 
+                    List<Object> objects = pdfStreamParser.getTokens();
                     objects.parallelStream().forEach(e -> {
                         if (e instanceof COSString) {
                             /* Ignore Any Exception During Parallel Processing */
@@ -74,6 +75,8 @@ public class Processor {
             });
             pdDocument.save(file);
             pdDocument.close();
+
+            GeneralLogger.Processor.procFinished();
         } catch (IOException e) {
             GeneralLogger.Processor.errorLoadPdf(file.getName());
         }
