@@ -27,6 +27,11 @@ function chk_d() {
     fi
 }
 
+echo -e "\n╭──────────────────────────────────────────────╮"
+echo -e "│          Installer for pdf-unstamper         │"
+echo -e "│    https://github.com/hwding/pdf-unstamper   │"
+echo -e "╰──────────────────────────────────────────────╯\n"
+
 # check JRE installation
 if type -p java > /dev/null 2>&1; then
     _java=1
@@ -93,6 +98,7 @@ echo "> installing ${exe_name}..."
 `mv $jar_name $user_bin`
 `mv $exe_name $user_bin`
 
+# grant permission
 echo "> grant executable permission to wrapper..."
 `chmod +x ${user_bin}${exe_name}`
 

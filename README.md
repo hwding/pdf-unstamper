@@ -41,6 +41,9 @@ Install (or update to) the latest version as command `unstamp` in `~/bin/` for c
 **Make sure you have `wget` installed**.
 ```
 ➜ bash <(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)
+
+# If using a proxy
+➜ proxychains bash <(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)
 ```
 #### Run
 ```
