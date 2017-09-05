@@ -5,6 +5,7 @@
 #DESC install unstamp as a command
 
 user_bin=`echo ~`"/bin/"
+locl_bin="/usr/local/bin/"
 jar_name="pdf-unstamper.jar"
 exe_name="unstamp"
 _version="0.1.2"
@@ -101,8 +102,16 @@ echo "> installing ${exe_name}..."
 `mv $exe_name $user_bin`
 
 # grant permission
-echo "> grant executable permission to wrapper..."
+echo "> granting executable permission to wrapper..."
 `chmod +x ${user_bin}${exe_name}`
+
+# create soft link
+echo "> linking ${user_bin}${exe_name} to ${locl_bin}${exe_name}"
+chk_f "${locl_bin}${exe_name}"
+if [ $? -eq 1 ]; then
+    `rm ${locl_bin}${exe_name}`
+fi
+`ln -s ${user_bin}${exe_name} ${locl_bin}${exe_name}`
 
 echo -e "$(tput setaf 2)> ${exe_name} installed as ${user_bin}${exe_name}$(tput sgr 0)"
 echo "> hava a nice day"

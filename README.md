@@ -36,14 +36,14 @@ Options:
 
 ## Get it now
 ### As a command
-Install (or update to) the latest version as command `unstamp` in `~/bin/` for convenience.
+Install (or update to) the latest version as command `unstamp` in `~/bin/` and soft-linked as `/usr/local/bin/unstamp` for convenience.
 #### Install
 Make sure you have `wget` installed.
 ```
-➜ bash <(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)
+➜ sudo bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)"
 
-# If using a proxy
-➜ proxychains bash <(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)
+# Using a proxy
+➜ sudo proxychains bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)"
 ```
 #### Run
 ```
