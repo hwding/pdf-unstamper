@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Sep 04 2017
+  DATE | Sep 05 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -21,10 +21,13 @@ import java.io.OutputStream;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Processor {
     public static void process(File file, String[] strings) {
+        AtomicBoolean processAllOk = new AtomicBoolean(true);
         GeneralLogger.Processor.procInProgress(file.getName());
+
         try {
             if (!file.canWrite()) {
                 GeneralLogger.File.notWritable(file.getName());
@@ -62,21 +65,27 @@ public class Processor {
                         }
                     });
 
+                    /* START: write modified tokens back to the stream */
                     PDStream newContents = new PDStream(pdDocument);
                     OutputStream out = newContents.createOutputStream();
                     ContentStreamWriter writer = new ContentStreamWriter(out);
                     writer.writeTokens(objects);
                     out.close();
+                    /* END */
 
                     pdPage.setContents(newContents);
                 } catch (Exception e) {
                     GeneralLogger.Processor.errorProcess(file.getName());
+                    processAllOk.set(false);
                 }
             });
+
+            /* write back to the file */
             pdDocument.save(file);
             pdDocument.close();
 
-            GeneralLogger.Processor.procFinished();
+            if (processAllOk.get())
+                GeneralLogger.Processor.procFinished();
         } catch (IOException e) {
             GeneralLogger.Processor.errorLoadPdf(file.getName());
         }

@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Sep 04 2017
+  DATE | Sep 05 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -51,7 +51,7 @@ public class GeneralLogger {
         }
 
         public static void errorProcess(String fn) {
-            System.err.println(suffix + "Error processing \'" + fn + "\', skipping");
+            System.err.println(suffix + "Error processing certain page of \'" + fn + "\', skipping");
         }
 
         public static void procInProgress(String fn) {
@@ -59,7 +59,7 @@ public class GeneralLogger {
         }
 
         public static void procFinished() {
-            System.out.println(" OK");
+            System.out.println(" GOOD");
         }
     }
 }
