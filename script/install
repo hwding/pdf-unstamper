@@ -103,4 +103,4 @@ echo "> grant executable permission to wrapper..."
 `chmod +x ${user_bin}${exe_name}`
 
 echo "> ${exe_name} installed as ${user_bin}${exe_name}"
-echo "> hava a nice day"
+echo -e "> hava a nice day\n"
