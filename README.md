@@ -38,7 +38,7 @@ Options:
 ### As a command
 Install (or update to) the latest version as command `unstamp` in `~/bin/` for convenience.
 #### Install
-**Make sure you have `wget` installed**.
+Make sure you have `wget` installed.
 ```
 ➜ bash <(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)
 
