@@ -39,14 +39,11 @@ Options:
 Install (or update to) the latest version as command `unstamp` in `~/bin/` for convenience.
 #### Install
 Make sure you have `wget` installed.
-```
+```shell
 ➜ bash <(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)
-
-# If using a proxy
-➜ proxychains bash <(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)
 ```
 #### Run
-```
+```shell
 # For single file processing
 ➜ unstamp -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
 ➜ unstamp -i RoR.pdf -o RoR.unstamped.pdf -k 图灵社区会员
@@ -64,7 +61,7 @@ Make sure you have `wget` installed.
 #### Download
 Get [*pdf-unstamper.jar*](https://github.com/hwding/pdf-unstamper/releases).
 #### Run
-```
+```shell
 # For single file processing
 ➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
 ➜ java -jar pdf-unstamper.jar -i RoR.pdf -o RoR.unstamped.pdf -k 图灵社区会员
