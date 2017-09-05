@@ -1,12 +1,13 @@
 /*
   AUTH | hwding
-  DATE | Aug 25 2017
+  DATE | Sep 05 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
  */
 package com.amastigote.unstamper.core;
 
+import com.sun.istack.internal.NotNull;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 
 import java.io.IOException;
@@ -15,9 +16,9 @@ import java.util.Set;
 class TextStampRecognizer {
 
     private static boolean recognizeWithFont(
-            String[] keywords,
-            byte[] inputText,
-            Set<PDFont> pdFonts) {
+            @NotNull String[] keywords,
+            @NotNull byte[] inputText,
+            @NotNull Set<PDFont> pdFonts) {
         String bs = generateByteString(inputText);
         for (PDFont f : pdFonts) {
             if (f == null) continue;
@@ -34,8 +35,8 @@ class TextStampRecognizer {
     }
 
     private static boolean recognizePlain(
-            String[] keywords,
-            byte[] inputText
+            @NotNull String[] keywords,
+            @NotNull byte[] inputText
     ) {
         for (String k : keywords) {
             if (new String(inputText).contains(k)) return true;
@@ -43,14 +44,14 @@ class TextStampRecognizer {
         return false;
     }
 
-    static boolean recognize(String[] keywords,
-                             byte[] inputText,
-                             Set<PDFont> pdFonts) {
+    static boolean recognize(@NotNull String[] keywords,
+                             @NotNull byte[] inputText,
+                             @NotNull Set<PDFont> pdFonts) {
         return recognizePlain(keywords, inputText) ||
                 recognizeWithFont(keywords, inputText, pdFonts);
     }
 
-    private static String generateByteString(byte[] bytes) {
+    private static String generateByteString(@NotNull byte[] bytes) {
         StringBuilder stringBuilder = new StringBuilder();
         for (byte b : bytes) {
             stringBuilder.append(Byte.toString(b));

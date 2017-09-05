@@ -8,6 +8,7 @@
 package com.amastigote.unstamper.core;
 
 import com.amastigote.unstamper.log.GeneralLogger;
+import com.sun.istack.internal.NotNull;
 import org.apache.pdfbox.cos.COSString;
 import org.apache.pdfbox.pdfparser.PDFStreamParser;
 import org.apache.pdfbox.pdfwriter.ContentStreamWriter;
@@ -24,7 +25,9 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Processor {
-    public static void process(File file, String[] strings) {
+    public static void process(
+            @NotNull File file,
+            @NotNull String[] strings) {
         AtomicBoolean processAllOk = new AtomicBoolean(true);
         GeneralLogger.Processor.procInProgress(file.getName());
 

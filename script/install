@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #AUTH hwding
-#DATE SEP/04/2017
+#DATE SEP/05/2017
 #DESC install unstamp as a command
 
 user_bin=`echo ~`"/bin/"
@@ -9,6 +9,7 @@ jar_name="pdf-unstamper.jar"
 exe_name="unstamp"
 _version="0.1.2"
 jar_durl="https://github.com/hwding/pdf-unstamper/releases/download/$_version/$jar_name"
+wrapper="#!/bin/bash\njava -jar ${user_bin}${jar_name} \"\$@\"\n"
 
 function chk_f() {
     if [ ! -f "$1" ]; then
@@ -59,10 +60,18 @@ fi
 
 # fetch JAR
 chk_f "$jar_name"
+if [ $? -eq 1 ]; then
+    `rm $jar_name`
+fi
+echo -n "> downloading $jar_name version $_version from GitHub..."
+`wget $jar_durl > /dev/null 2>&1`
+echo "done"
+
+# generate wrapper
+chk_f $exe_name
 if [ $? -eq 0 ]; then
-    echo -n "> missing $jar_name, downloading version $_version from GitHub..."
-    `wget $jar_durl > /dev/null 2>&1`
-    echo "OK"
+    echo "> generating wrapper..."
+    echo -e $wrapper > $exe_name
 fi
 
 # uninstall old version
@@ -81,8 +90,11 @@ fi
 
 # install
 echo "> installing ${exe_name}..."
-`cp $jar_name $user_bin`
-`cp $exe_name $user_bin`
+`mv $jar_name $user_bin`
+`mv $exe_name $user_bin`
+
+echo "> grant executable permission to wrapper..."
+`chmod +x ${user_bin}${exe_name}`
 
 echo "> ${exe_name} installed as ${user_bin}${exe_name}"
 echo "> hava a nice day"

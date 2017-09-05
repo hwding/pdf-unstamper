@@ -7,11 +7,13 @@
  */
 package com.amastigote.unstamper.log;
 
+import com.sun.istack.internal.NotNull;
+
 public class GeneralLogger {
     public static class Help {
         private static final String usage =
                 "\nPDF-UnStamper ver. 0.1.2 by hwding@GitHub\n" +
-                        "\nUsage: " +
+                        "\nUsage:" +
                         "\n   [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])" +
                         "\n   [OPTION] -I [INPUT DIR] -k [KEYWORDS...] (-O [OUTPUT DIR])\n" +
                         "\nOptions:" +
@@ -26,19 +28,19 @@ public class GeneralLogger {
     public static class File {
         private static final String suffix = "[File] ";
 
-        public static void nameDuplicate(String fn) {
+        public static void nameDuplicate(@NotNull String fn) {
             System.err.println(suffix + "Input file/dir \'" + fn + "\' has the same name as output file/dir, skipping");
         }
 
-        public static void notExist(String fn) {
+        public static void notExist(@NotNull String fn) {
             System.err.println(suffix + "File/dir \'" + fn + "\' not exist or is not a file/dir, skipping");
         }
 
-        public static void error(String fn) {
+        public static void error(@NotNull String fn) {
             System.err.println(suffix + "Error when generating stub file/dir for \'" + fn + "\', skipping");
         }
 
-        public static void notWritable(String fn) {
+        public static void notWritable(@NotNull String fn) {
             System.err.println(suffix + "File \'" + fn + "\' not writable, skipping");
         }
     }
@@ -46,15 +48,15 @@ public class GeneralLogger {
     public static class Processor {
         private static final String suffix = "[Processor] ";
 
-        public static void errorLoadPdf(String fn) {
+        public static void errorLoadPdf(@NotNull String fn) {
             System.err.println(suffix + "Error loading file \'" + fn + "\' as PDF, skipping");
         }
 
-        public static void errorProcess(String fn) {
+        public static void errorProcess(@NotNull String fn) {
             System.err.println(suffix + "Error processing certain page of \'" + fn + "\', skipping");
         }
 
-        public static void procInProgress(String fn) {
+        public static void procInProgress(@NotNull String fn) {
             System.out.print(suffix + "Processing PDF file \'" + fn + "\' ...");
         }
 

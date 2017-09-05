@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Aug 21 2017
+  DATE | Sep 05 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -20,7 +20,9 @@ public class IOHandler {
         return file.exists() && file.isFile() ? file : null;
     }
 
-    public static File getCopiedFile(@NotNull String ifn, @NotNull String ofn)
+    public static File getCopiedFile(
+            @NotNull String ifn,
+            @NotNull String ofn)
             throws IOException, FileNameDuplicateException {
         File fileI = new File(ifn);
         File fileO = new File(ofn);
@@ -33,7 +35,9 @@ public class IOHandler {
             return null;
     }
 
-    public static Iterator<File> getFiles(@NotNull String idn, boolean recursive) {
+    public static Iterator<File> getFiles(
+            @NotNull String idn,
+            @NotNull boolean recursive) {
         File dirI = new File(idn);
         if (dirI.exists() && dirI.isDirectory()) {
             return FileUtils.iterateFiles(dirI, new String[]{"pdf"}, recursive);
@@ -41,7 +45,10 @@ public class IOHandler {
             return null;
     }
 
-    public static Iterator<File> getCopiedFiles(@NotNull String idn, @NotNull String odn, boolean recursive)
+    public static Iterator<File> getCopiedFiles(
+            @NotNull String idn,
+            @NotNull String odn,
+            @NotNull boolean recursive)
             throws IOException, FileNameDuplicateException {
         File dirI = new File(idn);
         File dirO = new File(odn);

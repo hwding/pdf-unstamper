@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Aug 27 2017
+  DATE | Sep 05 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -10,6 +10,7 @@ package com.amastigote.unstamper;
 import com.amastigote.unstamper.log.GeneralLogger;
 import com.amastigote.unstamper.util.OptionManager;
 import com.amastigote.unstamper.util.TaskRunner;
+import com.sun.istack.internal.NotNull;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.ParseException;
@@ -22,7 +23,7 @@ public class Main {
                 "org.apache.commons.logging.impl.NoOpLog");
     }
 
-    public static void main(String[] args) {
+    public static void main(@NotNull String[] args) {
         CommandLine commandLine = null;
         try {
             commandLine = new DefaultParser()
