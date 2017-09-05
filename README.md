@@ -1,4 +1,6 @@
 # pdf-unstamper
+![](https://img.shields.io/badge/Powered%20by-Apache%20PDFBox-blue.svg?style=flat-square)
+
 Remove text stamps of **any font**, **any encoding** and **any language** with pdf-unstamper now!
 
 Powered by [Apache PDFBox®](https://pdfbox.apache.org/).
@@ -39,14 +41,14 @@ Options:
 Install (or update to) the latest version as command `unstamp` in `~/bin/` and soft-linked as `/usr/local/bin/unstamp` for convenience.
 #### Install
 Make sure you have `wget` installed.
-```
+```shell
 ➜ sudo bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)"
 
 # Using a proxy
 ➜ sudo proxychains bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)"
 ```
 #### Run
-```
+```shell
 # For single file processing
 ➜ unstamp -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
 ➜ unstamp -i RoR.pdf -o RoR.unstamped.pdf -k 图灵社区会员
@@ -64,7 +66,7 @@ Make sure you have `wget` installed.
 #### Download
 Get [*pdf-unstamper.jar*](https://github.com/hwding/pdf-unstamper/releases).
 #### Run
-```
+```shell
 # For single file processing
 ➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
 ➜ java -jar pdf-unstamper.jar -i RoR.pdf -o RoR.unstamped.pdf -k 图灵社区会员
