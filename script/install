@@ -29,28 +29,30 @@ function chk_d() {
 
 echo -e "\n╭──────────────────────────────────────────────╮"
 echo -e "│          Installer for pdf-unstamper         │"
-echo -e "│    https://github.com/hwding/pdf-unstamper   │"
+echo -e "│    $(tput setaf 6)https://github.com/hwding/pdf-unstamper$(tput sgr 0)   │"
 echo -e "╰──────────────────────────────────────────────╯\n"
 
 # check JRE installation
 if type -p java > /dev/null 2>&1; then
     _java=1
-    echo "> JRE detected in PATH"
+    echo -e "$(tput setaf 2)> JRE detected in PATH$(tput sgr 0)"
 elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]; then
     _java=1
-    echo "> JRE detected in JAVA_HOME"
+    echo -e "$(tput setaf 2)> JRE detected in JAVA_HOME$(tput sgr 0)"
 else
     _java=0
-    read -p "You do not have JRE installed, continue? [ENTER]"
+    echo -e -n "$(tput setaf 1)> no JRE installed, continue? [ENTER]$(tput sgr 0)"
+    read
 fi
 
 # check JRE version
 if [ $_java -gt 0 ]; then
     version=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
     if [[ "$version" > "1.8" ]]; then
-        echo "> JRE version is at least 1.8"
+        echo -e "$(tput setaf 2)> JRE version is at least 1.8$(tput sgr 0)"
     else         
-        read -p "> JRE version less than 1.8, continue? [ENTER]"
+        echo -e -n "$(tput setaf 1)> JRE version less than 1.8, continue? [ENTER]$(tput sgr 0)"
+        read
     fi
 fi
 
@@ -60,7 +62,7 @@ if [ $? -eq 0 ]; then
     echo "> target dir $user_bin not detected, creating..."
     `mkdir $user_bin`
 else
-    echo "> target dir $user_bin detected"
+    echo -e "$(tput setaf 2)> target dir $user_bin detected$(tput sgr 0)"
 fi
 
 # fetch JAR
@@ -102,5 +104,6 @@ echo "> installing ${exe_name}..."
 echo "> grant executable permission to wrapper..."
 `chmod +x ${user_bin}${exe_name}`
 
-echo "> ${exe_name} installed as ${user_bin}${exe_name}"
-echo -e "> hava a nice day\n"
+echo -e "$(tput setaf 2)> ${exe_name} installed as ${user_bin}${exe_name}$(tput sgr 0)"
+echo "> hava a nice day"
+echo
