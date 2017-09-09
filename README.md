@@ -25,13 +25,16 @@ Remove text stamps of **any font**, **any encoding** and **any language** with p
 
 ## Usage
 ```
-Usage: 
+Usage:
    [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])
    [OPTION] -I [INPUT DIR] -k [KEYWORDS...] (-O [OUTPUT DIR])
 
 Options:
-   -d,  --directly          directly modify the input file(s), which makes option o/O unnecessary
+   -d,  --directly          directly modify the input file(s), option o/O is
+                            unnecessary when this option is on
    -r,  --recursive         process files in the given dir recursively
+   -s,  --strict            use strict mode, a text area is considered as water mark
+                            only if its content strictly equals one of the keywords
 ```
 
 ## Get it now
@@ -48,10 +51,10 @@ Make sure you have `wget` installed.
 #### Run
 ```shell
 # For single file processing
-➜ unstamp -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
+➜ unstamp -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com -s
 ➜ unstamp -i RoR.pdf -o RoR.unstamped.pdf -k 图灵社区会员
 # Or
-➜ unstamp -i "C Recipes.pdf" -d -k www.allitebooks.com
+➜ unstamp -i "C Recipes.pdf" -d -k www.allitebooks.com -s
 ➜ unstamp -i RoR.pdf -d -k 图灵社区会员
  
 # For massive files processing

@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Sep 05 2017
+  DATE | Sep 10 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -27,7 +27,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Processor {
     public static void process(
             @NotNull File file,
-            @NotNull String[] strings) {
+            @NotNull String[] strings,
+            @NotNull boolean useStrict) {
         AtomicBoolean processAllOk = new AtomicBoolean(true);
         GeneralLogger.Processor.procInProgress(file.getName());
 
@@ -61,7 +62,7 @@ public class Processor {
                         if (e instanceof COSString) {
                             /* Ignore Any Exception During Parallel Processing */
                             try {
-                                if (TextStampRecognizer.recognize(strings, ((COSString) e).getBytes(), pdFonts))
+                                if (TextStampRecognizer.recognize(strings, ((COSString) e).getBytes(), pdFonts, useStrict))
                                     ((COSString) e).setValue(new byte[0]);
                             } catch (Exception ignored) {
                             }

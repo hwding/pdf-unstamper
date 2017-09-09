@@ -8,7 +8,7 @@ user_bin=`echo ~`"/bin/"
 locl_bin="/usr/local/bin/"
 jar_name="pdf-unstamper.jar"
 exe_name="unstamp"
-_version="0.1.2"
+_version="0.1.3"
 jar_durl="https://github.com/hwding/pdf-unstamper/releases/download/$_version/$jar_name"
 wrapper="#!/bin/bash\njava -jar ${user_bin}${jar_name} \"\$@\"\n"
 

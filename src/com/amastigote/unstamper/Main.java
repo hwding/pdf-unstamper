@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Sep 05 2017
+  DATE | Sep 10 2017
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -37,7 +37,8 @@ public class Main {
             System.exit(0);
         } else {
             TaskRunner.init(
-                    commandLine.getOptionValues('k'));
+                    commandLine.getOptionValues('k'),
+                    commandLine.hasOption('s'));
 
             if (commandLine.hasOption('i') && (commandLine.hasOption('o') || commandLine.hasOption('d'))) {
                 if (commandLine.hasOption('d'))
