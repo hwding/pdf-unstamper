@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #AUTH hwding
-#DATE SEP/05/2017
+#DATE OCT/15/2017
 #DESC install unstamp as a command
 
 user_bin=`echo ~`"/bin/"
@@ -12,8 +12,34 @@ _version="0.1.3"
 jar_durl="https://github.com/hwding/pdf-unstamper/releases/download/$_version/$jar_name"
 wrapper="#!/bin/bash\njava -jar ${user_bin}${jar_name} \"\$@\"\n"
 
+# default option(s)
+create_link=1
+
+# parse option(s)
+while getopts ":d:w" opt; do
+    case "${opt}" in
+        w)
+            create_link=0
+            ;;
+        d)
+            given_dir="${OPTARG}"
+            # complete the slash at the end of the given directory
+            [[ "${given_dir: -1}" == "/" ]] && user_bin=$given_dir || user_bin="${given_dir}/"
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
 function chk_f() {
     if [ ! -f "$1" ]; then
+        return 0;
+    else
+        return 1;
+    fi
+}
+
+function chk_l() {
+    if [ ! -L "$1" ]; then
         return 0;
     else
         return 1;
@@ -60,7 +86,8 @@ fi
 # check ~/bin/
 chk_d $user_bin
 if [ $? -eq 0 ]; then
-    echo "> target dir $user_bin not detected, creating..."
+    echo -e -n "$(tput setaf 1)> target dir $user_bin not detected, create? [ENTER]$(tput sgr 0)"
+    read
     `mkdir $user_bin`
 else
     echo -e "$(tput setaf 2)> target dir $user_bin detected$(tput sgr 0)"
@@ -86,14 +113,12 @@ fi
 chk_f "${user_bin}${jar_name}"
 if [ $? -eq 1 ]; then
     echo "> removing old version of $jar_name"
-    echo -n "> "
-    `rm -i ${user_bin}${jar_name}`
+    `rm ${user_bin}${jar_name}`
 fi
 chk_f "${user_bin}${exe_name}"
 if [ $? -eq 1 ]; then
     echo "> removing old version of $exe_name"
-    echo -n "> "
-    `rm -i ${user_bin}${exe_name}`
+    `rm ${user_bin}${exe_name}`
 fi
 
 # install
@@ -106,12 +131,14 @@ echo "> granting executable permission to wrapper..."
 `chmod +x ${user_bin}${exe_name}`
 
 # create soft link
-echo "> linking ${user_bin}${exe_name} to ${locl_bin}${exe_name}"
-chk_f "${locl_bin}${exe_name}"
-if [ $? -eq 1 ]; then
-    `rm ${locl_bin}${exe_name}`
+if [ $create_link -gt 0 ]; then
+    echo "> linking ${user_bin}${exe_name} to ${locl_bin}${exe_name}"
+    chk_l "${locl_bin}${exe_name}"
+    if [ $? -eq 1 ]; then
+        `rm ${locl_bin}${exe_name}`
+    fi
+    `ln -s ${user_bin}${exe_name} ${locl_bin}${exe_name}`
 fi
-`ln -s ${user_bin}${exe_name} ${locl_bin}${exe_name}`
 
 echo -e "$(tput setaf 2)> ${exe_name} installed as ${user_bin}${exe_name}$(tput sgr 0)"
 echo "> hava a nice day"
