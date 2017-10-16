@@ -49,8 +49,9 @@ Make sure you have `wget` installed.
 ➜ sudo proxychains bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)"
 
 # Script options
--d [DIR]  install binary into a specified directory
--w        install without creating a soft-link to /usr/local/bin/
+#
+# -d [DIR]  install binary into a specified directory
+# -w        install without creating a soft-link to /usr/local/bin/
 
 # If install with options, download the script first
 ➜ wget https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install
