@@ -45,20 +45,23 @@ Make sure you have `wget` installed.
 ```shell
 ➜ sudo bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)"
 
-# Using a proxy
+# If using a proxy
 ➜ sudo proxychains bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)"
 
 # Script options
 -d [DIR]  install binary into a specified directory
 -w        install without creating a soft-link to /usr/local/bin/
 
-# Examples with options
-➜ sudo bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install) -d ~/my-bins/"
-➜ sudo bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install) -w"
-➜ sudo bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install) -d ~/my-bins/ -w"
-➜ sudo proxychains bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install) -d ~/my-bins/"
-➜ sudo proxychains bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install) -w"
-➜ sudo proxychains bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install) -d ~/my-bins/ -w"
+# If install with options, download the script first
+➜ wget https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install
+
+# Then execute with or without proxy
+➜ sudo bash install -d ~/my-bins/
+➜ sudo bash install -w
+➜ sudo bash install -d ~/my-bins/ -w
+➜ sudo proxychains bash install -d ~/my-bins/
+➜ sudo proxychains bash install -w
+➜ sudo proxychains bash install -d ~/my-bins/ -w
 ```
 #### Run
 ```shell
