@@ -85,10 +85,10 @@ Get [*pdf-unstamper.jar*](https://github.com/hwding/pdf-unstamper/releases).
 #### Run
 ```shell
 # For single file processing
-➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com
+➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com -s
 ➜ java -jar pdf-unstamper.jar -i RoR.pdf -o RoR.unstamped.pdf -k 图灵社区会员
 # Or
-➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -d -k www.allitebooks.com
+➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -d -k www.allitebooks.com -s
 ➜ java -jar pdf-unstamper.jar -i RoR.pdf -d -k 图灵社区会员
  
 # For massive files processing
