@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #AUTH hwding
-#DATE OCT/15/2017
+#DATE JAN/06/2018
 #DESC install unstamp as a command
 
 user_bin=`echo ~`"/bin/"
@@ -15,6 +15,12 @@ wrapper="#!/bin/bash\njava -jar ${user_bin}${jar_name} \"\$@\"\n"
 # default option(s)
 create_link=1
 
+# check if the script is running in root
+if [ ! $UID -eq 0 ]; then
+    echo -e "$(tput setaf 1)> plz run this script in root permission$(tput sgr 0)"
+    exit -1
+fi
+
 # parse option(s)
 while getopts ":d:w" opt; do
     case "${opt}" in
@@ -23,8 +29,9 @@ while getopts ":d:w" opt; do
             ;;
         d)
             given_dir="${OPTARG}"
+
             # complete the slash at the end of the given directory
-            [[ "${given_dir: -1}" == "/" ]] && user_bin=$given_dir || user_bin="${given_dir}/"
+            [[ "${given_dir: -1}" == "/" ]] && user_bin=${given_dir} || user_bin="${given_dir}/"
             ;;
     esac
 done
@@ -73,7 +80,7 @@ else
 fi
 
 # check JRE version
-if [ $_java -gt 0 ]; then
+if [ ${_java} -gt 0 ]; then
     version=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
     if [[ "$version" > "1.8" ]]; then
         echo -e "$(tput setaf 2)> JRE version is at least 1.8$(tput sgr 0)"
@@ -84,32 +91,47 @@ if [ $_java -gt 0 ]; then
 fi
 
 # check ~/bin/
-chk_d $user_bin
+chk_d ${user_bin}
 if [ $? -eq 0 ]; then
     echo -e -n "$(tput setaf 1)> target dir $user_bin not detected, create? [ENTER]$(tput sgr 0)"
     read
-    `mkdir $user_bin`
+    `mkdir ${user_bin}`
 else
     echo -e "$(tput setaf 2)> target dir $user_bin detected$(tput sgr 0)"
 fi
 
-# fetch JAR
+# remove old JAR in current dir
 chk_f "$jar_name"
 if [ $? -eq 1 ]; then
-    `rm $jar_name`
+    `rm ${jar_name}`
 fi
-echo -n "> downloading $jar_name version $_version from GitHub..."
-`wget $jar_durl > /dev/null 2>&1`
+
+# check if we have a proper download tool before downloading
+if ! type -p wget > /dev/null 2>&1; then
+    if ! type -p curl > /dev/null 2>&1; then
+        echo -e "$(tput setaf 1)> you must have wget or curl to download the JAR$(tput sgr 0)"
+        exit -1
+    fi
+
+    # download with curl
+    echo -n "> downloading $jar_name version $_version from GitHub using curl..."
+    `curl -L -o ${jar_name} ${jar_durl} > /dev/null 2>&1`
+else
+
+    # download with wget
+    echo -n "> downloading $jar_name version $_version from GitHub using wget..."
+    `wget ${jar_durl} > /dev/null 2>&1`
+fi
 echo "done"
 
 # generate wrapper
-chk_f $exe_name
+chk_f ${exe_name}
 if [ $? -eq 0 ]; then
     echo "> generating wrapper..."
-    echo -e $wrapper > $exe_name
+    echo -e ${wrapper} > ${exe_name}
 fi
 
-# uninstall old version
+# remove old JAR & wrapper in ~/bin
 chk_f "${user_bin}${jar_name}"
 if [ $? -eq 1 ]; then
     echo "> removing old version of $jar_name"
@@ -121,17 +143,17 @@ if [ $? -eq 1 ]; then
     `rm ${user_bin}${exe_name}`
 fi
 
-# install
+# install new JAR & wrapper
 echo "> installing ${exe_name}..."
-`mv $jar_name $user_bin`
-`mv $exe_name $user_bin`
+`mv ${jar_name} ${user_bin}`
+`mv ${exe_name} ${user_bin}`
 
 # grant permission
 echo "> granting executable permission to wrapper..."
 `chmod +x ${user_bin}${exe_name}`
 
 # create soft link
-if [ $create_link -gt 0 ]; then
+if [ ${create_link} -gt 0 ]; then
     echo "> linking ${user_bin}${exe_name} to ${locl_bin}${exe_name}"
     chk_l "${locl_bin}${exe_name}"
     if [ $? -eq 1 ]; then
