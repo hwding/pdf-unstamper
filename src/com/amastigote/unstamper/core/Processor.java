@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Sep 10 2017
+  DATE | Jan 06 2018
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -29,7 +29,6 @@ public class Processor {
             @NotNull File file,
             @NotNull String[] strings,
             @NotNull boolean useStrict) {
-        AtomicBoolean processAllOk = new AtomicBoolean(true);
         GeneralLogger.Processor.procInProgress(file.getName());
 
         try {
@@ -80,16 +79,12 @@ public class Processor {
                     pdPage.setContents(newContents);
                 } catch (Exception e) {
                     GeneralLogger.Processor.errorProcess(file.getName());
-                    processAllOk.set(false);
                 }
             });
 
             /* write back to the file */
             pdDocument.save(file);
             pdDocument.close();
-
-            if (processAllOk.get())
-                GeneralLogger.Processor.procFinished();
         } catch (IOException e) {
             GeneralLogger.Processor.errorLoadPdf(file.getName());
         }

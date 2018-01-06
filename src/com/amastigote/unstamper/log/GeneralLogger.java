@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Sep 10 2017
+  DATE | Jan 06 2018
   DESC | text stamp remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -12,7 +12,7 @@ import com.sun.istack.internal.NotNull;
 public class GeneralLogger {
     public static class Help {
         private static final String usage =
-                "\nPDF-UnStamper ver. 0.1.3 by hwding@GitHub\n" +
+                "\nPDF-UnStamper ver. 0.1.4 by hwding@GitHub\n" +
                         "\nUsage:" +
                         "\n   [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])" +
                         "\n   [OPTION] -I [INPUT DIR] -k [KEYWORDS...] (-O [OUTPUT DIR])\n" +
@@ -60,11 +60,7 @@ public class GeneralLogger {
         }
 
         public static void procInProgress(@NotNull String fn) {
-            System.out.print(suffix + "Processing PDF file \'" + fn + "\' ...");
-        }
-
-        public static void procFinished() {
-            System.out.println(" done");
+            System.out.println(suffix + "Processing PDF file \'" + fn + "\' ...");
         }
     }
 }
