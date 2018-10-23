@@ -1,7 +1,7 @@
 # pdf-unstamper
 ![](https://img.shields.io/badge/Powered%20by-Apache%20PDFBox-blue.svg?style=flat-square)
 
-Remove text stamps of **any font**, **any encoding** and **any language** with pdf-unstamper now!
+Remove textual watermark of **any font**, **any encoding** and **any language** with pdf-unstamper now!
 
 ## Effect
 <table>

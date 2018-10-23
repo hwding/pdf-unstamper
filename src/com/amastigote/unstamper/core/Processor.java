@@ -1,7 +1,7 @@
 /*
   AUTH | hwding
   DATE | Jan 06 2018
-  DESC | text stamp remover for PDF files
+  DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
  */

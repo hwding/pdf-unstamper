@@ -1,7 +1,7 @@
 /*
   AUTH | hwding
-  DATE | Jan 06 2018
-  DESC | text stamp remover for PDF files
+  DATE | Oct 23 2018
+  DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
  */
@@ -12,7 +12,7 @@ import com.sun.istack.internal.NotNull;
 public class GeneralLogger {
     public static class Help {
         private static final String usage =
-                "\nPDF-UnStamper ver. 0.1.4 by hwding@GitHub\n" +
+                "\nPDF-UnStamper ver. 0.1.5 by hwding@GitHub\n" +
                         "\nUsage:" +
                         "\n   [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])" +
                         "\n   [OPTION] -I [INPUT DIR] -k [KEYWORDS...] (-O [OUTPUT DIR])\n" +
@@ -20,7 +20,7 @@ public class GeneralLogger {
                         "\n   -d,  --directly          directly modify the input file(s), option o/O is\n" +
                         "                            unnecessary when this option is on" +
                         "\n   -r,  --recursive         process files in the given dir recursively" +
-                        "\n   -s,  --strict            use strict mode, a text area is considered as water mark\n" +
+                        "\n   -s,  --strict            use strict mode, a text area is considered as watermark\n" +
                         "                            only if its content strictly equals one of the keywords\n";
 
         public static void print() {
