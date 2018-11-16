@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Sep 10 2017
+  DATE | Nov 16 2018
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -38,7 +38,8 @@ public class Main {
         } else {
             TaskRunner.init(
                     commandLine.getOptionValues('k'),
-                    commandLine.hasOption('s'));
+                    commandLine.hasOption('s'),
+                    commandLine.hasOption('c'));
 
             if (commandLine.hasOption('i') && (commandLine.hasOption('o') || commandLine.hasOption('d'))) {
                 if (commandLine.hasOption('d'))

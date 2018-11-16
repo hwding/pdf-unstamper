@@ -17,6 +17,10 @@ Remove textual watermark of **any font**, **any encoding** and **any language** 
 <td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/after.png"></td>
 </tr>
 <tr>
+<td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/before-frame.png"></td>
+<td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/after-frame.png"></td>
+</tr>
+<tr>
 <td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/before-ituring.png"></td>
 <td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/after-ituring.png"></td>
 </tr>
@@ -30,11 +34,14 @@ Usage:
    [OPTION] -I [INPUT DIR] -k [KEYWORDS...] (-O [OUTPUT DIR])
 
 Options:
-   -d,  --directly          directly modify the input file(s), option o/O is
+   -d,  --direct            directly modify the input file(s), option o/O is
                             unnecessary when this option is on
    -r,  --recursive         process files in the given dir recursively
-   -s,  --strict            use strict mode, a text area is considered as water mark
+   -s,  --strict            use strict mode, a text area is considered as watermark
                             only if its content strictly equals one of the keywords
+   -c,  --clear             clear all annotations of the page which contains the target
+                            textual watermark(s), if you encounter bordered frame issues,
+                            enable this switch
 ```
 
 ## Get it now
@@ -67,16 +74,16 @@ Make sure you have `wget` installed.
 #### Run
 ```shell
 # For single file processing
-➜ unstamp -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com -s
+➜ unstamp -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com -s -c
 ➜ unstamp -i RoR.pdf -o RoR.unstamped.pdf -k 图灵社区会员
 # Or
-➜ unstamp -i "C Recipes.pdf" -d -k www.allitebooks.com -s
+➜ unstamp -i "C Recipes.pdf" -d -k www.allitebooks.com -s -c
 ➜ unstamp -i RoR.pdf -d -k 图灵社区会员
  
 # For massive files processing
-➜ unstamp -I pdfs/ -O unstampedPdfs/ -r -k 图灵社区会员 www.allitebooks.com
+➜ unstamp -I pdfs/ -O unstampedPdfs/ -r -k 图灵社区会员 www.allitebooks.com -c
 # Or
-➜ unstamp -I pdfs/ -d -r -k 图灵社区会员 www.allitebooks.com
+➜ unstamp -I pdfs/ -d -r -k 图灵社区会员 www.allitebooks.com -c
 ```
 
 ### As a JAR
@@ -85,16 +92,16 @@ Get [*pdf-unstamper.jar*](https://github.com/hwding/pdf-unstamper/releases).
 #### Run
 ```shell
 # For single file processing
-➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com -s
+➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com -s -c
 ➜ java -jar pdf-unstamper.jar -i RoR.pdf -o RoR.unstamped.pdf -k 图灵社区会员
 # Or
-➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -d -k www.allitebooks.com -s
+➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -d -k www.allitebooks.com -s -c
 ➜ java -jar pdf-unstamper.jar -i RoR.pdf -d -k 图灵社区会员
  
 # For massive files processing
-➜ java -jar pdf-unstamper.jar -I pdfs/ -O unstampedPdfs/ -r -k 图灵社区会员 www.allitebooks.com
+➜ java -jar pdf-unstamper.jar -I pdfs/ -O unstampedPdfs/ -r -k 图灵社区会员 www.allitebooks.com -c
 # Or
-➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k 图灵社区会员 www.allitebooks.com
+➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k 图灵社区会员 www.allitebooks.com -c
 ```
 ## Structure
 ```

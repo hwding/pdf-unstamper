@@ -1,14 +1,14 @@
 #!/bin/bash
 
 #AUTH hwding
-#DATE JAN/06/2018
+#DATE NOV/16/2018
 #DESC install unstamp as a command
 
 user_bin=`echo ~`"/bin/"
 locl_bin="/usr/local/bin/"
 jar_name="pdf-unstamper.jar"
 exe_name="unstamp"
-_version="0.1.5"
+_version="0.2.0"
 jar_durl="https://github.com/hwding/pdf-unstamper/releases/download/$_version/$jar_name"
 wrapper="#!/bin/bash\njava -jar ${user_bin}${jar_name} \"\$@\"\n"
 

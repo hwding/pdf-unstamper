@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Sep 10 2017
+  DATE | Nov 16 2018
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -20,12 +20,15 @@ import java.util.Iterator;
 public class TaskRunner {
     private static String[] keywords;
     private static boolean useStrict;
+    private static boolean removeAnnotations;
 
     public static void init(
             @NotNull String[] keywords,
-            @NotNull boolean useStrict) {
+            @NotNull boolean useStrict,
+            @NotNull boolean removeAnnotations) {
         TaskRunner.keywords = keywords;
         TaskRunner.useStrict = useStrict;
+        TaskRunner.removeAnnotations = removeAnnotations;
     }
 
     public static void procSingleFile(
@@ -46,7 +49,7 @@ public class TaskRunner {
     }
 
     private static void submitToProcessor(@NotNull File file) {
-        Processor.process(file, keywords, useStrict);
+        Processor.process(file, keywords, useStrict, removeAnnotations);
     }
 
     public static void procSingleFileDirectly(@NotNull String ifn) {

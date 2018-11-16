@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Oct 23 2018
+  DATE | Nov 16 2018
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -17,11 +17,14 @@ public class GeneralLogger {
                         "\n   [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])" +
                         "\n   [OPTION] -I [INPUT DIR] -k [KEYWORDS...] (-O [OUTPUT DIR])\n" +
                         "\nOptions:" +
-                        "\n   -d,  --directly          directly modify the input file(s), option o/O is\n" +
+                        "\n   -d,  --direct            directly modify the input file(s), option o/O is\n" +
                         "                            unnecessary when this option is on" +
                         "\n   -r,  --recursive         process files in the given dir recursively" +
                         "\n   -s,  --strict            use strict mode, a text area is considered as watermark\n" +
-                        "                            only if its content strictly equals one of the keywords\n";
+                        "                            only if its content strictly equals one of the keywords" +
+                        "\n   -c,  --clear             clear all annotations of the page which contains the target\n" +
+                        "                            textual watermark(s), if you encounter bordered frame issues,\n" +
+                        "                            enable this switch";
 
         public static void print() {
             System.out.println(usage);
