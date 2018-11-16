@@ -39,7 +39,7 @@ Options:
    -r,  --recursive         process files in the given dir recursively
    -s,  --strict            use strict mode, a text area is considered as watermark
                             only if its content strictly equals one of the keywords
-   -c,  --clear             clear all annotations of the page which contains the target
+   -c,  --clear             clear all annotations in pages which contains the target
                             textual watermark(s), if you encounter bordered frame issues,
                             enable this switch
 ```

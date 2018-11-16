@@ -22,7 +22,7 @@ public class GeneralLogger {
                         "\n   -r,  --recursive         process files in the given dir recursively" +
                         "\n   -s,  --strict            use strict mode, a text area is considered as watermark\n" +
                         "                            only if its content strictly equals one of the keywords" +
-                        "\n   -c,  --clear             clear all annotations of the page which contains the target\n" +
+                        "\n   -c,  --clear             clear all annotations in pages which contains the target\n" +
                         "                            textual watermark(s), if you encounter bordered frame issues,\n" +
                         "                            enable this switch";
 
