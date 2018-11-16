@@ -17,8 +17,8 @@ Remove textual watermark of **any font**, **any encoding** and **any language** 
 <td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/after.png"></td>
 </tr>
 <tr>
-<td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/before-frame.png"></td>
-<td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/after-frame.png"></td>
+<td><img height="75" src="https://github.com/hwding/pdf-unstamper/blob/master/art/before-frame.png"></td>
+<td><img height="75" src="https://github.com/hwding/pdf-unstamper/blob/master/art/after-frame.png"></td>
 </tr>
 <tr>
 <td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/before-ituring.png"></td>
