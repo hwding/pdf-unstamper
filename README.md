@@ -1,6 +1,5 @@
 # pdf-unstamper
-![](https://img.shields.io/badge/Powered%20by-Apache%20PDFBox-blue.svg?style=flat-square)
-
+![](https://img.shields.io/badge/Powered%20by-Apache%20PdfBox-green.svg?style=flat-square)  
 Remove textual watermark of **any font**, **any encoding** and **any language** with pdf-unstamper now!
 
 ## Effect
