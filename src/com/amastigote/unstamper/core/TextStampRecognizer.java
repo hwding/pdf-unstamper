@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Nov 24 2018
+  DATE | Dec 25 2018
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -11,6 +11,7 @@ import com.sun.istack.internal.NotNull;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Set;
 
 class TextStampRecognizer {
@@ -22,12 +23,18 @@ class TextStampRecognizer {
             @NotNull boolean useStrict) {
         String encodedInput = generateByteString(inputText);
         for (PDFont f : pdFonts) {
-            if (f == null) continue;
+            if (Objects.isNull(f)) {
+                continue;
+            }
+
             for (String k : keywords) {
                 try {
                     byte[] encodedKeywordBytes = f.encode(k);
                     final String encodedKeyword = generateByteString(encodedKeywordBytes);
-                    if (checkDuplicate(encodedInput, encodedKeyword, useStrict)) return true;
+
+                    if (checkDuplicate(encodedInput, encodedKeyword, useStrict)) {
+                        return true;
+                    }
                 } catch (IOException | IllegalArgumentException ignored) {
                 }
             }
@@ -40,8 +47,11 @@ class TextStampRecognizer {
             @NotNull byte[] inputText,
             @NotNull boolean useStrict
     ) {
-        for (String k : keywords)
-            if (checkDuplicate(new String(inputText), k, useStrict)) return true;
+        for (String k : keywords) {
+            if (checkDuplicate(new String(inputText), k, useStrict)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -66,8 +76,9 @@ class TextStampRecognizer {
 
     private static String generateByteString(@NotNull byte[] bytes) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (byte b : bytes)
-            stringBuilder.append(Byte.toString(b));
+        for (byte b : bytes) {
+            stringBuilder.append(b);
+        }
         return stringBuilder.toString();
     }
 }

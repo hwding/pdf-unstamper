@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Sep 05 2017
+  DATE | Dec 25 2018
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -26,9 +26,10 @@ public class IOHandler {
             throws IOException, FileNameDuplicateException {
         File fileI = new File(ifn);
         File fileO = new File(ofn);
-        if (fileI.getCanonicalPath().equals(fileO.getCanonicalPath()))
+
+        if (fileI.getCanonicalPath().equals(fileO.getCanonicalPath())) {
             throw new FileNameDuplicateException();
-        else if (fileI.exists() && fileI.isFile()) {
+        } else if (fileI.exists() && fileI.isFile()) {
             FileUtils.copyFile(fileI, fileO);
             return fileO;
         } else
@@ -52,9 +53,10 @@ public class IOHandler {
             throws IOException, FileNameDuplicateException {
         File dirI = new File(idn);
         File dirO = new File(odn);
-        if (dirI.getCanonicalPath().equals(dirO.getCanonicalPath()))
+
+        if (dirI.getCanonicalPath().equals(dirO.getCanonicalPath())) {
             throw new FileNameDuplicateException();
-        else if (dirI.exists() && dirI.isDirectory()) {
+        } else if (dirI.exists() && dirI.isDirectory()) {
             FileUtils.copyDirectory(dirI, dirO);
             return FileUtils.iterateFiles(dirO, new String[]{"pdf"}, recursive);
         } else

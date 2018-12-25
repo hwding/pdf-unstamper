@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Nov 16 2018
+  DATE | Dec 25 2018
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -16,6 +16,7 @@ import com.sun.istack.internal.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class TaskRunner {
     private static String[] keywords;
@@ -36,7 +37,7 @@ public class TaskRunner {
             @NotNull String ofn) {
         try {
             File file = IOHandler.getCopiedFile(ifn, ofn);
-            if (file == null) {
+            if (Objects.isNull(file)) {
                 GeneralLogger.File.notExist(ifn);
                 return;
             }
@@ -54,7 +55,7 @@ public class TaskRunner {
 
     public static void procSingleFileDirectly(@NotNull String ifn) {
         File file = IOHandler.getFile(ifn);
-        if (file == null) {
+        if (Objects.isNull(file)) {
             GeneralLogger.File.notExist(ifn);
             return;
         }
@@ -86,7 +87,7 @@ public class TaskRunner {
     private static void procIterator(
             @Nullable Iterator<File> fileIterator,
             @NotNull String idn) {
-        if (fileIterator == null) {
+        if (Objects.isNull(fileIterator)) {
             GeneralLogger.File.notExist(idn);
             return;
         }
