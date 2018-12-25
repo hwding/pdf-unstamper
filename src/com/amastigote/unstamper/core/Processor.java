@@ -9,6 +9,10 @@ package com.amastigote.unstamper.core;
 
 import com.amastigote.unstamper.log.GeneralLogger;
 import com.sun.istack.internal.NotNull;
+import org.apache.pdfbox.contentstream.operator.Operator;
+import org.apache.pdfbox.cos.COSArray;
+import org.apache.pdfbox.cos.COSBase;
+import org.apache.pdfbox.cos.COSObject;
 import org.apache.pdfbox.cos.COSString;
 import org.apache.pdfbox.pdfparser.PDFStreamParser;
 import org.apache.pdfbox.pdfwriter.ContentStreamWriter;
@@ -19,10 +23,7 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Processor {
 
@@ -61,24 +62,47 @@ public class Processor {
                     });
                     /* END */
 
+                    /*
+                    * to handle both string array and string
+                    * */
                     List<Object> objects = pdfStreamParser.getTokens();
-                    objects.parallelStream().forEach(e -> {
-                        if (e instanceof COSString) {
-                            /* Ignore Any Exception During Parallel Processing */
-                            try {
-                                if (TextStampRecognizer.recognize(strings, ((COSString) e).getBytes(), pdFonts, useStrict)) {
-                                    ((COSString) e).setValue(empBytes);
-
-                                    if (removeAnnotations) {
-
-                                        //noinspection unchecked
-                                        pdPage.setAnnotations(empList);
+                    for (int i = 0;i < objects.size();i++) {
+                        Object e = objects.get(i);
+                        if (e instanceof Operator) {
+                            Operator op = (Operator)e;
+                            String testStr = "";
+                            boolean isArray = false;
+                            if (op.getName().equals("TJ") || (op.getName().equals("Tj"))) {
+                                if (i == 0) continue;
+                                if (objects.get(i - 1) instanceof COSArray) {
+                                    isArray = true;
+                                    COSArray array = (COSArray)objects.get(i - 1);
+                                    StringBuffer buffer = new StringBuffer();
+                                    for (int j = 0;j < array.size();j++) {
+                                        if (array.getString(j) == null) continue;
+                                        buffer.append(array.getString(j));
                                     }
+                                    testStr = buffer.toString();
+                                } else if (objects.get(i - 1) instanceof COSString) {
+                                    COSString str = (COSString) objects.get(i - 1);
+                                    testStr = str.toString();
+                                } else {
+                                    continue;
                                 }
-                            } catch (Exception ignored) {
+                                try {
+                                    if (TextStampRecognizer.recognize(strings, testStr.getBytes(), pdFonts, useStrict)) {
+                                        if (isArray) ((COSArray)objects.get(i - 1)).clear();
+                                        else ((COSString) objects.get(i - 1)).setValue(empBytes);
+                                        if (removeAnnotations) {
+                                            //noinspection unchecked
+                                            pdPage.setAnnotations(empList);
+                                        }
+                                    }
+                                } catch (Exception ignored) {
+                                }
                             }
                         }
-                    });
+                    }
 
                     /* START: write modified tokens back to the stream */
                     PDStream newContents = new PDStream(pdDocument);
@@ -90,7 +114,7 @@ public class Processor {
 
                     pdPage.setContents(newContents);
                 } catch (Exception e) {
-                    GeneralLogger.Processor.errorProcess(file.getName());
+                    GeneralLogger.Processor.errorProcess(file.getName() + e.getMessage());
                 }
             });
 

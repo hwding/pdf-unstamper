@@ -23,6 +23,10 @@ Remove textual watermark of **any font**, **any encoding** and **any language** 
 <td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/before-ituring.png"></td>
 <td><img src="https://github.com/hwding/pdf-unstamper/blob/master/art/after-ituring.png"></td>
 </tr>
+<tr>
+<td><img src="https://github.com/dxywx/pdf-unstamper/blob/master/art/before_stringarray.png"></td>
+<td><img src="https://github.com/dxywx/pdf-unstamper/blob/master/art/after_stringarray.png"></td>
+</tr>
 </tbody>
 </table>
 
