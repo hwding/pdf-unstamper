@@ -62,7 +62,9 @@ public class Processor {
                     });
                     /* END */
 
-
+                    /*
+                    * to handle both string array and string
+                    * */
                     List<Object> objects = pdfStreamParser.getTokens();
                     for (int i = 0;i < objects.size();i++) {
                         Object e = objects.get(i);
