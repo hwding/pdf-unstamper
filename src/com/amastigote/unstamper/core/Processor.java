@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Nov 16 2018
+  DATE | Dec 25 2018
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -129,8 +129,8 @@ public class Processor {
                     /* END */
 
                     pdPage.setContents(newContents);
-                } catch (Exception e) {
-                    GeneralLogger.Processor.errorProcess(file.getName() + e.getMessage());
+                } catch (Exception ignored) {
+                    GeneralLogger.Processor.errorProcess(file.getName());
                 }
             });
 
