@@ -11,6 +11,7 @@ import com.amastigote.unstamper.log.GeneralLogger;
 import com.sun.istack.internal.NotNull;
 import org.apache.pdfbox.contentstream.operator.Operator;
 import org.apache.pdfbox.cos.COSArray;
+import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.cos.COSString;
 import org.apache.pdfbox.pdfparser.PDFStreamParser;
 import org.apache.pdfbox.pdfwriter.ContentStreamWriter;
@@ -127,8 +128,9 @@ public class Processor {
 
                         /* >> write modified tokens back to the stream */
                         PDStream newContents = new PDStream(pdDocument);
-                        OutputStream out = newContents.createOutputStream();
+                        OutputStream out = newContents.createOutputStream(COSName.FLATE_DECODE);
                         ContentStreamWriter writer = new ContentStreamWriter(out);
+
                         writer.writeTokens(objects);
                         out.close();
                         /* << write modified tokens back to the stream */
