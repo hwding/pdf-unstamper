@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.amastigote</groupId>
     <artifactId>unstamper</artifactId>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
     <description>Textual watermark remover for PDF files.</description>
     <name>pdf-unstamper</name>
     <url>https://github.com/hwding/pdf-unstamper</url>
