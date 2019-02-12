@@ -106,18 +106,3 @@ Get [*pdf-unstamper.jar*](https://github.com/hwding/pdf-unstamper/releases).
 # Or
 ➜ java -jar pdf-unstamper.jar -I pdfs/ -d -r -k 图灵社区会员 www.allitebooks.com -c
 ```
-## Structure
-```
-src/com/amastigote/unstamper
-├── core
-│   ├── Processor.java
-│   └── TextStampRecognizer.java
-├── io
-│   └── IOHandler.java
-├── log
-│   └── GeneralLogger.java
-├── Main.java
-└── util
-    ├── OptionManager.java
-    └── TaskRunner.java
-```
