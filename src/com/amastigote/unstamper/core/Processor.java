@@ -48,6 +48,7 @@ public class Processor {
             PDDocument pdDocument = PDDocument.load(file);
             pdDocument.getPages().forEach(pdPage -> {
                 try {
+                    boolean needRewrite = false;
 
                     /* START: loading font resources from current page */
                     PDFStreamParser pdfStreamParser = new PDFStreamParser(pdPage);
@@ -113,6 +114,8 @@ public class Processor {
                                         if (removeAnnotations) {
                                             pdPage.setAnnotations(empList);
                                         }
+
+                                        needRewrite = true;
                                     }
                                 } catch (Exception ignored) {
                                 }
@@ -120,15 +123,18 @@ public class Processor {
                         }
                     }
 
-                    /* START: write modified tokens back to the stream */
-                    PDStream newContents = new PDStream(pdDocument);
-                    OutputStream out = newContents.createOutputStream();
-                    ContentStreamWriter writer = new ContentStreamWriter(out);
-                    writer.writeTokens(objects);
-                    out.close();
-                    /* END */
+                    if (needRewrite) {
 
-                    pdPage.setContents(newContents);
+                        /* >> write modified tokens back to the stream */
+                        PDStream newContents = new PDStream(pdDocument);
+                        OutputStream out = newContents.createOutputStream();
+                        ContentStreamWriter writer = new ContentStreamWriter(out);
+                        writer.writeTokens(objects);
+                        out.close();
+                        /* << write modified tokens back to the stream */
+
+                        pdPage.setContents(newContents);
+                    }
                 } catch (Exception ignored) {
                     GeneralLogger.Processor.errorProcess(file.getName());
                 }
