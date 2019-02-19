@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Dec 25 2018
+  DATE | Feb 19 2019
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -42,7 +42,7 @@ class TextStampRecognizer {
         return false;
     }
 
-    private static boolean recognizePlain(
+    static boolean recognizePlain(
             @NotNull String[] keywords,
             @NotNull byte[] inputText,
             @NotNull boolean useStrict
