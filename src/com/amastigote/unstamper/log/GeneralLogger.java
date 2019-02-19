@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Nov 16 2018
+  DATE | Feb 19 2019
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -12,7 +12,7 @@ import com.sun.istack.internal.NotNull;
 public class GeneralLogger {
     public static class Help {
         private static final String usage =
-                "\nPDF-UnStamper ver. 0.2.2 by hwding@GitHub\n" +
+                "\nPDF-UnStamper ver. 0.2.3 by hwding@GitHub\n" +
                         "\nUsage:" +
                         "\n   [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])" +
                         "\n   [OPTION] -I [INPUT DIR] -k [KEYWORDS...] (-O [OUTPUT DIR])\n" +
