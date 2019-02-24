@@ -4,7 +4,7 @@ Remove textual watermark of **any font**, **any encoding** and **any language** 
 
 > Disclaimer:  
 > This software(pdf-unstamper.jar) is ONLY for technical exchange and  
-> and CANNOT be held responsible for any consequences caused by pdf file modification.
+> CANNOT be held responsible for any consequences caused by pdf file modification.
 ## Effect
 <table>
 <thead>
