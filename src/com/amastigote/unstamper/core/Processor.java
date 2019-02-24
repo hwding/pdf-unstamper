@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Feb 19 2019
+  DATE | Feb 24 2019
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -39,7 +39,7 @@ public class Processor {
     private static final String SHOW_TEXT = "Tj";
     private static final String SHOW_TEXT_ADJUSTED = "TJ";
     private static final String BEGIN_MARKED_CONTENT_WITH_PROPERTY = "BDC";
-    private static final String END_MARKDED_CONTENT = "EMC";
+    private static final String END_MARKED_CONTENT = "EMC";
 
     public static void process(
             @NotNull File file,
@@ -110,7 +110,7 @@ public class Processor {
                             if (op.getName().equals(BEGIN_MARKED_CONTENT_WITH_PROPERTY)) {
                                 ++mcCount;
                                 mcRemovingFlag = markedContentMatchRecords.get(mcCount);
-                            } else if (op.getName().equals(END_MARKDED_CONTENT)) {
+                            } else if (op.getName().equals(END_MARKED_CONTENT)) {
                                 mcRemovingFlag = false;
                                 objects.set(i, empObj);
                             }
