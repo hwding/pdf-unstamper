@@ -194,6 +194,7 @@ public class Processor {
             });
 
             /* write back to the file */
+            pdDocument.setAllSecurityToBeRemoved(true);
             pdDocument.save(file);
             pdDocument.close();
         } catch (IOException e) {
