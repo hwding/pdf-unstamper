@@ -25,8 +25,8 @@ read ov
 echo -n "enter new version: "
 read nv
 
-sed -i "${xml_lpos}s/${ov}/${nv}" ${xml_loc}
-sed -i "${java_lpos}s/${ov}/${nv}" ${java_loc}
-sed -i "${bash_lpos}s/${ov}/${nv}" ${bash_loc}
+sed -i "${xml_lpos}s/${ov}/${nv}/" ${xml_loc}
+sed -i "${java_lpos}s/${ov}/${nv}/" ${java_loc}
+sed -i "${bash_lpos}s/${ov}/${nv}/" ${bash_loc}
 
 echo "done"
