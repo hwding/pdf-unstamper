@@ -1,11 +1,11 @@
-# pdf-unstamper
+# *pdf-unstamper*
 ![](https://img.shields.io/badge/Powered%20by-Apache%20PdfBox-green.svg?style=flat-square)  
 Remove textual watermark of **any font**, **any encoding** and **any language** with pdf-unstamper now!
 
-> Disclaimer:  
-> This software(pdf-unstamper.jar) is ONLY for technical exchange and  
-> CANNOT be held responsible for any consequences caused by pdf file modification.
-## Effect
+## *Disclaimer*  
+This software(pdf-unstamper.jar) is ONLY for technical exchange and CANNOT be held responsible for any consequences caused by pdf modification.
+
+## *Effect*
 <table>
 <thead>
 <tr>
@@ -33,7 +33,8 @@ Remove textual watermark of **any font**, **any encoding** and **any language** 
 </tbody>
 </table>
 
-## Usage
+## *Manual*
+Run the tool without argument will show the following.
 ```
 Usage:
    [OPTION] -i [INPUT PDF] -k [KEYWORDS...] (-o [OUTPUT PDF])
@@ -50,10 +51,10 @@ Options:
                             enable this switch
 ```
 
-## Get it now
-### As a command
+## *Get it now*
+### *As a command*
 Install (or update to) the latest version as command `unstamp` in `~/bin/` and soft-linked as `/usr/local/bin/unstamp` for convenience.
-#### Install
+#### *Install*
 Make sure you have `wget` installed.
 ```shell
 ➜ sudo bash -c "$(curl -s https://raw.githubusercontent.com/hwding/pdf-unstamper/master/script/install)"
@@ -77,7 +78,7 @@ Make sure you have `wget` installed.
 ➜ sudo proxychains bash install -w
 ➜ sudo proxychains bash install -d ~/my-bins/ -w
 ```
-#### Run
+#### *Run*
 ```shell
 # For single file processing
 ➜ unstamp -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com -s -c
@@ -92,10 +93,10 @@ Make sure you have `wget` installed.
 ➜ unstamp -I pdfs/ -d -r -k 图灵社区会员 www.allitebooks.com -c
 ```
 
-### As a JAR
-#### Download
+### *As a JAR*
+#### *Download*
 Get [*pdf-unstamper.jar*](https://github.com/hwding/pdf-unstamper/releases).
-#### Run
+#### *Run*
 ```shell
 # For single file processing
 ➜ java -jar pdf-unstamper.jar -i "C Recipes.pdf" -o "C Recipes.unstamped.pdf" -k www.allitebooks.com -s -c
