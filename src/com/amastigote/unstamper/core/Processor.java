@@ -107,10 +107,10 @@ public class Processor {
                         /* >> mark marked content */
                         if (object instanceof Operator) {
                             Operator op = (Operator) object;
-                            if (op.getName().equals(BEGIN_MARKED_CONTENT_WITH_PROPERTY)) {
+                            if (BEGIN_MARKED_CONTENT_WITH_PROPERTY.equals(op.getName())) {
                                 ++mcCount;
                                 mcRemovingFlag = markedContentMatchRecords.get(mcCount);
-                            } else if (op.getName().equals(END_MARKED_CONTENT)) {
+                            } else if (END_MARKED_CONTENT.equals(op.getName())) {
                                 mcRemovingFlag = false;
                                 objects.set(i, empObj);
                             }
@@ -127,7 +127,7 @@ public class Processor {
                             String testStr;
                             boolean isArray = false;
 
-                            if (op.getName().equals(SHOW_TEXT) || (op.getName().equals(SHOW_TEXT_ADJUSTED))) {
+                            if (SHOW_TEXT.equals(op.getName()) || (SHOW_TEXT_ADJUSTED.equals(op.getName()))) {
                                 if (i == 0) {
                                     continue;
                                 }
