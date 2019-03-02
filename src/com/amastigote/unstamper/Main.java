@@ -17,6 +17,8 @@ import org.apache.commons.cli.ParseException;
 
 public class Main {
 
+    public static final String _version = "0.2.3";
+
     static {
         /* Disable Logging in Apache PDFBox */
         System.setProperty("org.apache.commons.logging.Log",

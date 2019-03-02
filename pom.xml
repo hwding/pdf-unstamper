@@ -3,10 +3,13 @@
         xmlns="http://maven.apache.org/POM/4.0.0"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
+    <properties>
+        <_version>0.2.3</_version>
+    </properties>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.amastigote</groupId>
     <artifactId>unstamper</artifactId>
-    <version>0.2.3</version>
+    <version>${_version}</version>
     <description>Textual watermark remover for PDF files.</description>
     <name>pdf-unstamper</name>
     <url>https://github.com/hwding/pdf-unstamper</url>

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#AUTH hwding
+#DATE MAR 02 2019
+#DESC bump version tool script
+
+val_name="_version"
+
+xml_patt="<${val_name}>"
+java_patt="String ${val_name}"
+bash_patt="${val_name}="
+
+java_loc="../src/com/amastigote/unstamper/Main.java"
+xml_loc="../pom.xml"
+bash_loc="./install"
+
+#confirm the patterns still work fine
+xml_lpos=`awk "/${xml_patt}/ {print FNR}" ${xml_loc}`
+java_lpos=`awk "/${java_patt}/ {print FNR}" ${java_loc}`
+bash_lpos=`awk "/${bash_patt}/ {print FNR}" ${bash_loc}`
+echo "pattern matched as: xml@${xml_lpos} java@${java_lpos} bash@${bash_lpos}"
+
+echo -n "enter old version: "
+read ov
+echo -n "enter new version: "
+read nv
+
+sed -i "${xml_lpos}s/${ov}/${nv}" ${xml_loc}
+sed -i "${java_lpos}s/${ov}/${nv}" ${java_loc}
+sed -i "${bash_lpos}s/${ov}/${nv}" ${bash_loc}
+
+echo "done"
