@@ -81,8 +81,14 @@ public class Processor {
                     final PDFMarkedContentExtractor extractor = new PDFMarkedContentExtractor();
                     extractor.processPage(pdPage);
 
-                    List<PDMarkedContent> markedContents = extractor.getMarkedContents();
-                    List<Boolean> markedContentMatchRecords = markedContents
+                    final List<PDMarkedContent> markedContents = extractor.getMarkedContents();
+                    final List<PDMarkedContent> flattenedMarkedContents = new ArrayList<>(markedContents.size());
+
+                    new MarkedContentFlattener()
+                            .container(flattenedMarkedContents)
+                            .flatten(markedContents);
+
+                    final List<Boolean> markedContentMatchRecords = flattenedMarkedContents
                             .stream()
                             .map(PDMarkedContent::getContents)
                             .map(c -> c.stream()
@@ -197,7 +203,7 @@ public class Processor {
             pdDocument.setAllSecurityToBeRemoved(true);
             pdDocument.save(file);
             pdDocument.close();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
             GeneralLogger.Processor.errorLoadPdf(file.getName());
         }
     }
