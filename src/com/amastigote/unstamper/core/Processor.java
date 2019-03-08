@@ -1,6 +1,6 @@
 /*
   AUTH | hwding
-  DATE | Feb 24 2019
+  DATE | Mar 08 2019
   DESC | textual watermark remover for PDF files
   MAIL | m@amastigote.com
   GITH | github.com/hwding
@@ -55,7 +55,6 @@ public class Processor {
             }
 
             PDDocument pdDocument = PDDocument.load(file);
-            PDFMarkedContentExtractor extractor = new PDFMarkedContentExtractor();
 
             pdDocument.getPages().forEach(pdPage -> {
                 try {
@@ -79,6 +78,7 @@ public class Processor {
                     /* << loading font resources from current page */
 
                     /* >> pre-check marked contents and remember orders */
+                    final PDFMarkedContentExtractor extractor = new PDFMarkedContentExtractor();
                     extractor.processPage(pdPage);
 
                     List<PDMarkedContent> markedContents = extractor.getMarkedContents();
