@@ -3,7 +3,7 @@
 Remove textual watermark of **any font**, **any encoding** and **any language** with pdf-unstamper now!
 
 ## Star History
-[![Star History Chart](https://api.star-history.com/svg?repos=hwding/pdf-unstamper&type=Date)](https://www.star-history.com/#hwding/pdf-unstamper&Date)
+[![Star History Chart](https://api.star-history.com/chart?repos=hwding/pdf-unstamper&type=date&legend=top-left&sealed_token=YuNIWzIlyMbHrO5vD7uy_ICxA-Ci9Lf24Hf9iQ3HU04caTBLMbnZc8l8dh3GCry5WTor2_mvZy-nH8KUGJu0-a12RkernunCA2uFYlk49ezW8Tbitn8b3Q)](https://www.star-history.com/?repos=hwding%2Fpdf-unstamper&type=date&legend=top-left)
 
 ## *Disclaimer*  
 This software(pdf-unstamper.jar) is ONLY for technical exchange and CANNOT be held responsible for any consequences caused by pdf modification.
